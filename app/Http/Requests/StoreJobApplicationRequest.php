@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\JobApplication;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreJobApplicationRequest extends FormRequest
 {
@@ -12,7 +14,7 @@ class StoreJobApplicationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +25,13 @@ class StoreJobApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'company_name' => ['required', 'string', 'max:255'],
+            'position' => ['required', 'string', 'max:255'],
+            'status' => ['sometimes', Rule::in(array_keys(JobApplication::STATUSES))],
+            'source' => ['nullable', 'string', 'max:255'],
+            'applied_at' => ['nullable', 'date'],
+            'job_url' => ['nullable', 'url', 'max:2048'],
+            'notes' => ['nullable', 'string', 'max:5000'],
         ];
     }
 }
