@@ -11,6 +11,7 @@ import type {
     JobApplicationsFilters,
     PaginatedJobApplications,
 } from '@/features/job-applications/types';
+import jobApplications from '@/routes/job-applications';
 
 type Props = {
     applications: PaginatedJobApplications;
@@ -124,6 +125,7 @@ export function JobApplicationsTable({
             data={applications.data}
             pagination={applications}
             filters={filters}
+            routePath={jobApplications.index.url()}
             partialReloadKeys={['applications']}
         />
     );

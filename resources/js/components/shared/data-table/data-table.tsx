@@ -26,6 +26,7 @@ interface DataTableProps<TData, TValue> {
     data: TData[];
     pagination?: PaginationMeta;
     filters?: Record<string, any>;
+    routePath?: string;
     meta?: any;
     hidePagination?: boolean;
     partialReloadKeys?: string[];
@@ -37,6 +38,7 @@ export function DataTable<TData, TValue>({
     data,
     pagination,
     filters = {},
+    routePath,
     meta,
     hidePagination = false,
     partialReloadKeys = [],
@@ -54,7 +56,7 @@ export function DataTable<TData, TValue>({
 
             setIsLoading(true);
             router.get(
-                window.location.pathname,
+                routePath ?? window.location.pathname,
                 { ...filters, ...params },
                 {
                     preserveState: true,
@@ -68,7 +70,7 @@ export function DataTable<TData, TValue>({
                 },
             );
         },
-        [isSSR, filters, partialReloadKeys],
+        [isSSR, filters, partialReloadKeys, routePath],
     );
 
     const [sorting, setSorting] = useState<SortingState>(() =>
@@ -103,8 +105,12 @@ export function DataTable<TData, TValue>({
 
             if (isSSR) {
                 navigate({
-                    sort_by: next[0]?.id ?? '',
-                    sort_dir: next[0]?.desc ? 'desc' : 'asc',
+                    sort_by: next[0]?.id,
+                    sort_dir: next[0]
+                        ? next[0].desc
+                            ? 'desc'
+                            : 'asc'
+                        : undefined,
                     page: 1,
                 });
             }

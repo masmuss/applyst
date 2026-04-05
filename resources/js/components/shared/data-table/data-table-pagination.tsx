@@ -19,8 +19,8 @@ export interface PaginationMeta {
     last_page: number;
     per_page: number;
     total: number;
-    from: number;
-    to: number;
+    from: number | null;
+    to: number | null;
 }
 
 interface DataTablePaginationProps {
@@ -35,6 +35,8 @@ export function DataTablePagination({
     onPageSizeChange,
 }: DataTablePaginationProps) {
     const { current_page, last_page, per_page, from, to, total } = pagination;
+    const displayFrom = from ?? 0;
+    const displayTo = to ?? 0;
 
     const isFirstPage = current_page <= 1;
     const isLastPage = current_page >= last_page;
@@ -42,7 +44,7 @@ export function DataTablePagination({
     return (
         <div className="flex flex-col justify-between md:flex-row md:items-center md:px-2">
             <div className="flex-1 text-sm text-muted-foreground">
-                Showing {from} to {to} of {total} results
+                Showing {displayFrom} to {displayTo} of {total} results
             </div>
             <div className="flex items-center space-x-6 lg:space-x-8">
                 <div className="flex items-center space-x-2">
