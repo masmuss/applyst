@@ -19,25 +19,134 @@ class JobApplicationIndexTest extends TestCase
         /** @var User $otherUser */
         $otherUser = User::factory()->create();
 
-        JobApplication::factory()
-            ->for($user)
-            ->create([
-                'company_name' => 'Acme Studio',
-                'position' => 'Product Designer',
+        $applications = [
+            [
+                'company_name' => 'Nusantara Tech',
+                'position' => 'Frontend Engineer',
                 'status' => 'applied',
                 'source' => 'LinkedIn',
-                'applied_at' => '2026-04-01',
-            ]);
-
-        JobApplication::factory()
-            ->for($user)
-            ->create([
-                'company_name' => 'Northwind',
-                'position' => 'Frontend Engineer',
+                'applied_at' => '2026-03-01',
+                'job_url' => 'https://careers.nusantaratech.id/jobs/frontend-engineer',
+            ],
+            [
+                'company_name' => 'Gojek',
+                'position' => 'Software Engineer',
+                'status' => 'applied',
+                'source' => 'Company Website',
+                'applied_at' => '2026-03-02',
+                'job_url' => 'https://careers.gojek.com/jobs/software-engineer',
+            ],
+            [
+                'company_name' => 'Traveloka',
+                'position' => 'Product Engineer',
+                'status' => 'applied',
+                'source' => 'Referral',
+                'applied_at' => '2026-03-03',
+                'job_url' => 'https://careers.traveloka.com/jobs/product-engineer',
+            ],
+            [
+                'company_name' => 'Bukalapak',
+                'position' => 'UI Engineer',
+                'status' => 'applied',
+                'source' => 'LinkedIn',
+                'applied_at' => '2026-03-04',
+                'job_url' => 'https://careers.bukalapak.com/jobs/ui-engineer',
+            ],
+            [
+                'company_name' => 'Mekari',
+                'position' => 'Frontend Developer',
+                'status' => 'applied',
+                'source' => 'Indeed',
+                'applied_at' => '2026-03-05',
+                'job_url' => 'https://career.mekari.com/jobs/frontend-developer',
+            ],
+            [
+                'company_name' => 'Xendit',
+                'position' => 'Backend Engineer',
+                'status' => 'interview',
+                'source' => 'LinkedIn',
+                'applied_at' => '2026-03-06',
+                'job_url' => 'https://www.xendit.co/careers/backend-engineer',
+            ],
+            [
+                'company_name' => 'Ruangguru',
+                'position' => 'Full Stack Engineer',
+                'status' => 'interview',
+                'source' => 'Company Website',
+                'applied_at' => '2026-03-07',
+                'job_url' => 'https://career.ruangguru.com/jobs/full-stack-engineer',
+            ],
+            [
+                'company_name' => 'Kredivo',
+                'position' => 'Software Engineer II',
                 'status' => 'interview',
                 'source' => 'Referral',
-                'applied_at' => '2026-04-02',
-            ]);
+                'applied_at' => '2026-03-08',
+                'job_url' => 'https://careers.kredivo.com/jobs/software-engineer-ii',
+            ],
+            [
+                'company_name' => 'Blibli',
+                'position' => 'Frontend Engineer',
+                'status' => 'interview',
+                'source' => 'LinkedIn',
+                'applied_at' => '2026-03-09',
+                'job_url' => 'https://careers.blibli.com/jobs/frontend-engineer',
+            ],
+            [
+                'company_name' => 'Dana',
+                'position' => 'Platform Engineer',
+                'status' => 'offering',
+                'source' => 'Company Website',
+                'applied_at' => '2026-03-10',
+                'job_url' => 'https://careers.dana.id/jobs/platform-engineer',
+            ],
+            [
+                'company_name' => 'Ajaib',
+                'position' => 'Mobile Engineer',
+                'status' => 'offering',
+                'source' => 'LinkedIn',
+                'applied_at' => '2026-03-11',
+                'job_url' => 'https://career.ajaib.co.id/jobs/mobile-engineer',
+            ],
+            [
+                'company_name' => 'Sirclo',
+                'position' => 'Frontend Engineer',
+                'status' => 'accepted',
+                'source' => 'Referral',
+                'applied_at' => '2026-03-12',
+                'job_url' => 'https://careers.sirclo.com/jobs/frontend-engineer',
+            ],
+            [
+                'company_name' => 'Halodoc',
+                'position' => 'Software Engineer',
+                'status' => 'accepted',
+                'source' => 'Company Website',
+                'applied_at' => '2026-03-13',
+                'job_url' => 'https://careers.halodoc.com/jobs/software-engineer',
+            ],
+            [
+                'company_name' => 'Tiket.com',
+                'position' => 'QA Engineer',
+                'status' => 'accepted',
+                'source' => 'LinkedIn',
+                'applied_at' => '2026-03-14',
+                'job_url' => 'https://careers.tiket.com/jobs/qa-engineer',
+            ],
+            [
+                'company_name' => 'Sea Labs Indonesia',
+                'position' => 'Software Engineer',
+                'status' => 'rejected',
+                'source' => 'Company Website',
+                'applied_at' => '2026-03-15',
+                'job_url' => 'https://careers.sea.com/jobs/software-engineer',
+            ],
+        ];
+
+        foreach ($applications as $application) {
+            JobApplication::factory()
+                ->for($user)
+                ->create($application);
+        }
 
         JobApplication::factory()
             ->for($otherUser)
@@ -50,17 +159,17 @@ class JobApplicationIndexTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->get(route('job-applications.index', ['status' => 'applied']))
+            ->get(route('job-applications.index'))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
                 ->component('job-applications/index')
-                ->where('filters.status', 'applied')
-                ->where('summary.total', 1)
-                ->where('summary.statuses.process', 1)
-                ->where('summary.statuses.accepted', 0)
-                ->where('summary.statuses.rejected', 0)
+                ->where('summary.total', 15)
+                ->where('summary.statuses.process', 11)
+                ->where('summary.statuses.accepted', 3)
+                ->where('summary.statuses.rejected', 1)
                 ->where('statuses.applied', 'Applied')
-                ->has('applications.data', 1),
+                ->where('applications.total', 15)
+                ->has('applications.data', 10),
             );
     }
 }
