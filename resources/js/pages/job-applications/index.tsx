@@ -1,16 +1,16 @@
 import { Head } from '@inertiajs/react';
-import Heading from '@/components/heading';
-import { JobApplicationsFilters } from '@/components/job-applications/job-applications-filters';
-import { JobApplicationsTable } from '@/components/job-applications/job-applications-table';
+import Heading from '@/components/shared/heading';
+import { JobApplicationsFilters } from '@/features/job-applications/components/job-applications-filters';
+import { JobApplicationsOverview } from '@/features/job-applications/components/job-applications-overview';
+import { JobApplicationsTable } from '@/features/job-applications/components/job-applications-table';
 import type {
     JobApplicationStatusLabels,
     JobApplicationsFilters as JobApplicationsFiltersType,
     JobApplicationsSummary as JobApplicationsSummaryType,
     PaginatedJobApplications,
-} from '@/components/job-applications/types';
+} from '@/features/job-applications/types';
 import { dashboard } from '@/routes';
 import jobApplications from '@/routes/job-applications';
-import { JobApplicationsOverview } from '@/components/job-applications/job-applications-overview';
 
 type Props = {
     applications: PaginatedJobApplications;

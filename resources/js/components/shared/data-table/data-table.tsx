@@ -11,7 +11,6 @@ import { useCallback, useState } from 'react';
 
 import { DataTablePagination } from '@/components/shared/data-table/data-table-pagination';
 import type { PaginationMeta } from '@/components/shared/data-table/data-table-pagination';
-import { cn } from '@/lib/utils';
 import {
     Table,
     TableBody,
@@ -20,6 +19,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
+import { cn } from '@/lib/utils';
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];

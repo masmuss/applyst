@@ -1,8 +1,8 @@
+import { Badge } from '@/components/ui/badge';
 import type {
     JobApplicationStatusLabels,
     JobApplicationsSummary,
-} from '@/components/job-applications/types';
-import { Badge } from '@/components/ui/badge';
+} from '@/features/job-applications/types';
 
 type Props = {
     summary: JobApplicationsSummary;

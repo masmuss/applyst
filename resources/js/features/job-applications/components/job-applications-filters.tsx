@@ -1,10 +1,6 @@
 import { router } from '@inertiajs/react';
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import type {
-    JobApplicationStatusLabels,
-    JobApplicationsFilters,
-} from '@/components/job-applications/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -16,6 +12,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import type {
+    JobApplicationStatusLabels,
+    JobApplicationsFilters,
+} from '@/features/job-applications/types';
 import jobApplications from '@/routes/job-applications';
 
 type Props = {

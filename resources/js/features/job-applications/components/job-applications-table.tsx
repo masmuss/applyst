@@ -1,16 +1,16 @@
 import type { ColumnDef } from '@tanstack/react-table';
 import { ExternalLink } from 'lucide-react';
+import { DataTable } from '@/components/shared/data-table/data-table';
+import { DataTableColumnHeader } from '@/components/shared/data-table/data-table-column-header';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import type {
     JobApplicationRecord,
     JobApplicationStatus,
     JobApplicationStatusLabels,
     JobApplicationsFilters,
     PaginatedJobApplications,
-} from '@/components/job-applications/types';
-import { DataTable } from '@/components/shared/data-table/data-table';
-import { DataTableColumnHeader } from '@/components/shared/data-table/data-table-column-header';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+} from '@/features/job-applications/types';
 
 type Props = {
     applications: PaginatedJobApplications;
