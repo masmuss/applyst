@@ -33,7 +33,7 @@ class JobApplication extends Model
 
     protected array $filterable = [
         'status' => '=',
-        'source' => '=',
+        'source' => 'like',
     ];
 
     protected array $searchable = [
