@@ -1,11 +1,9 @@
 import { Link } from '@inertiajs/react';
-import {
-    BookOpen,
-    BriefcaseBusiness,
-    FolderGit2,
-    LayoutGrid,
-} from 'lucide-react';
 import AppLogo from '@/components/layout/app-logo';
+import {
+    mainNavItems,
+    utilityNavItems,
+} from '@/components/layout/app-navigation';
 import { NavFooter } from '@/components/layout/nav-footer';
 import { NavMain } from '@/components/layout/nav-main';
 import { NavUser } from '@/components/layout/nav-user';
@@ -19,34 +17,6 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
-import jobApplications from '@/routes/job-applications';
-import type { NavItem } from '@/types';
-
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Job applications',
-        href: jobApplications.index(),
-        icon: BriefcaseBusiness,
-    },
-];
-
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: FolderGit2,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
-    },
-];
 
 export function AppSidebar() {
     return (
@@ -68,7 +38,7 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
+                <NavFooter items={utilityNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>
