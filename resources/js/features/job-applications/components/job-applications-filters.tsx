@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -67,8 +73,13 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
 
     return (
         <Card>
-            <CardHeader className="pb-4">
+            <CardHeader>
                 <CardTitle>Refine your pipeline</CardTitle>
+                <CardDescription>
+                    Use the filters below to narrow down the applications shown
+                    in the table. You can combine multiple filters to find
+                    specific applications.
+                </CardDescription>
             </CardHeader>
             <CardContent>
                 <form
