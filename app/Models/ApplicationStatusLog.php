@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\JobApplicationStatus;
 use Database\Factories\ApplicationStatusLogFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -34,13 +35,11 @@ class ApplicationStatusLog extends Model
 
     public function getFromLabelAttribute(): ?string
     {
-        return $this->from_status
-            ? JobApplication::STATUSES[$this->from_status]
-            : null;
+        return JobApplicationStatus::labelFor($this->from_status);
     }
 
     public function getToLabelAttribute(): string
     {
-        return JobApplication::STATUSES[$this->to_status];
+        return JobApplicationStatus::labelFor($this->to_status) ?? $this->to_status;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\JobApplication;
+use App\Enums\JobApplicationStatus;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -27,7 +27,7 @@ class StoreJobApplicationRequest extends FormRequest
         return [
             'company_name' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
-            'status' => ['sometimes', Rule::in(array_keys(JobApplication::STATUSES))],
+            'status' => ['sometimes', Rule::enum(JobApplicationStatus::class)],
             'source' => ['nullable', 'string', 'max:255'],
             'applied_at' => ['nullable', 'date'],
             'job_url' => ['nullable', 'url', 'max:2048'],

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\JobApplicationStatus;
 use App\Http\Requests\StoreJobApplicationRequest;
 use App\Http\Requests\UpdateJobApplicationRequest;
 use App\Models\JobApplication;
@@ -30,7 +31,7 @@ class JobApplicationController extends Controller
 
         return Inertia::render('job-applications/index', [
             'applications' => $applications,
-            'statuses' => JobApplication::STATUSES,
+            'statuses' => JobApplication::statuses(),
             'summary' => $this->buildSummary($applicationsQuery),
             'filters' => $request->only([
                 'search',
@@ -57,16 +58,16 @@ class JobApplicationController extends Controller
             ->groupBy('status')
             ->pluck('aggregate', 'status');
 
-        $processCount = (int) ($statusCounts['applied'] ?? 0)
-            + (int) ($statusCounts['interview'] ?? 0)
-            + (int) ($statusCounts['offering'] ?? 0);
+        $processCount = (int) ($statusCounts[JobApplicationStatus::Applied->value] ?? 0)
+            + (int) ($statusCounts[JobApplicationStatus::Interview->value] ?? 0)
+            + (int) ($statusCounts[JobApplicationStatus::Offering->value] ?? 0);
 
         return [
             'total' => (clone $applicationsQuery)->count(),
             'statuses' => [
                 'process' => $processCount,
-                'accepted' => (int) ($statusCounts['accepted'] ?? 0),
-                'rejected' => (int) ($statusCounts['rejected'] ?? 0),
+                'accepted' => (int) ($statusCounts[JobApplicationStatus::Accepted->value] ?? 0),
+                'rejected' => (int) ($statusCounts[JobApplicationStatus::Rejected->value] ?? 0),
             ],
         ];
     }

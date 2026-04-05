@@ -167,7 +167,7 @@ class JobApplicationIndexTest extends TestCase
                 ->where('summary.statuses.process', 11)
                 ->where('summary.statuses.accepted', 3)
                 ->where('summary.statuses.rejected', 1)
-                ->where('statuses.applied', 'Applied')
+                ->where('statuses.applied', JobApplication::statuses()['applied'])
                 ->where('applications.total', 15)
                 ->has('applications.data', 10),
             );
