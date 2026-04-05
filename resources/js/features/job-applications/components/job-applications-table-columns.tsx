@@ -8,6 +8,7 @@ import type {
     JobApplicationRecord,
     JobApplicationStatusLabels,
 } from '@/features/job-applications/types';
+import { JobApplicationDeleteDialog } from '@/features/job-applications/components/job-application-delete-dialog';
 
 function formatAppliedAt(value: string): string {
     return new Intl.DateTimeFormat('en-GB', {
@@ -92,10 +93,13 @@ export function defineJobApplicationsTableColumns(
             id: 'actions',
             header: 'Actions',
             cell: ({ row }) => (
-                <JobApplicationUpdateDialog
-                    jobApplication={row.original}
-                    statuses={statuses}
-                />
+                <div className="flex items-center gap-2">
+                    <JobApplicationUpdateDialog
+                        jobApplication={row.original}
+                        statuses={statuses}
+                    />
+                    <JobApplicationDeleteDialog jobApplication={row.original} />
+                </div>
             ),
         },
     ];
