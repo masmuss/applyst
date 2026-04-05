@@ -1,4 +1,3 @@
-import { router } from '@inertiajs/react';
 import { useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import { Button } from '@/components/ui/button';
@@ -16,6 +15,7 @@ import type {
     JobApplicationStatusLabels,
     JobApplicationsFilters,
 } from '@/features/job-applications/types';
+import { useTableFilters } from '@/hooks/use-table-filters';
 import jobApplications from '@/routes/job-applications';
 
 type Props = {
@@ -26,29 +26,28 @@ type Props = {
 const ALL_STATUSES = '__all__';
 
 export function JobApplicationsFilters({ filters, statuses }: Props) {
-    const [search, setSearch] = useState(filters.search ?? '');
+    const { search, setSearch, applyFilters } = useTableFilters({
+        routePath: jobApplications.index.url(),
+        filters,
+        only: ['applications', 'summary', 'filters'],
+        retainedOnResetKeys: ['sort_by', 'sort_dir', 'per_page'],
+        debounceMs: 400,
+    });
+
     const [status, setStatus] = useState(filters.status ?? ALL_STATUSES);
     const [source, setSource] = useState(filters.source ?? '');
 
     function handleSubmit(event: SyntheticEvent<HTMLFormElement>): void {
         event.preventDefault();
 
-        router.get(
-            jobApplications.index.url(),
-            {
-                search: search.trim() || undefined,
-                status: status === ALL_STATUSES ? undefined : status,
-                source: source.trim() || undefined,
-                sort_by: filters.sort_by || undefined,
-                sort_dir: filters.sort_dir || undefined,
-                per_page: filters.per_page || undefined,
-                page: 1,
-            },
-            {
-                preserveScroll: true,
-                replace: true,
-            },
-        );
+        applyFilters({
+            search: search.trim() || undefined,
+            status: status === ALL_STATUSES ? undefined : status,
+            source: source.trim() || undefined,
+            sort_by: filters.sort_by || undefined,
+            sort_dir: filters.sort_dir || undefined,
+            per_page: filters.per_page || undefined,
+        });
     }
 
     function handleReset(): void {
@@ -56,19 +55,14 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
         setStatus(ALL_STATUSES);
         setSource('');
 
-        router.get(
-            jobApplications.index.url(),
-            {
-                sort_by: filters.sort_by || undefined,
-                sort_dir: filters.sort_dir || undefined,
-                per_page: filters.per_page || undefined,
-                page: 1,
-            },
-            {
-                preserveScroll: true,
-                replace: true,
-            },
-        );
+        applyFilters({
+            search: undefined,
+            status: undefined,
+            source: undefined,
+            sort_by: filters.sort_by || undefined,
+            sort_dir: filters.sort_dir || undefined,
+            per_page: filters.per_page || undefined,
+        });
     }
 
     return (
@@ -87,6 +81,12 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
                             id="job-application-search"
                             value={search}
                             onChange={(event) => setSearch(event.target.value)}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter') {
+                                    event.preventDefault();
+                                    event.currentTarget.form?.requestSubmit();
+                                }
+                            }}
                             placeholder="Company or role"
                         />
                     </div>
