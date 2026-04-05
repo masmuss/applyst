@@ -1,3 +1,4 @@
+import { Ban, CheckCircle, Layers, Loader } from 'lucide-react';
 import {
     Card,
     CardContent,
@@ -6,7 +7,6 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import type { JobApplicationsSummary } from '@/features/job-applications/types';
-import { Ban, CheckCircle, Layers, Loader } from 'lucide-react';
 
 type Props = {
     summary: JobApplicationsSummary;
