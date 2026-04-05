@@ -7,6 +7,7 @@ use App\Http\Requests\StoreJobApplicationRequest;
 use App\Http\Requests\UpdateJobApplicationRequest;
 use App\Models\JobApplication;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -83,12 +84,14 @@ class JobApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJobApplicationRequest $request)
+    public function store(StoreJobApplicationRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $data['applied_at'] ??= today();
 
         $request->user()->jobApplications()->create($data);
+
+        return back();
     }
 
     /**
@@ -114,19 +117,25 @@ class JobApplicationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJobApplicationRequest $request, JobApplication $jobApplication)
+    public function update(UpdateJobApplicationRequest $request, JobApplication $jobApplication): RedirectResponse
     {
         $this->authorize('update', $jobApplication);
 
         $data = $request->validated();
         $jobApplication->update($data);
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JobApplication $jobApplication)
+    public function destroy(JobApplication $jobApplication): RedirectResponse
     {
         $this->authorize('delete', $jobApplication);
+
+        $jobApplication->delete();
+
+        return back();
     }
 }

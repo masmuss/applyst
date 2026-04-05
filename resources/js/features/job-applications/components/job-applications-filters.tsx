@@ -19,10 +19,10 @@ import { Label } from '@/components/ui/label';
 import {
     Select,
     SelectContent,
-    SelectItem,
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { JobApplicationStatusSelectOptions } from '@/features/job-applications/components/job-application-status';
 import type {
     JobApplicationStatusLabels,
     JobApplicationsFilters,
@@ -122,16 +122,12 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
                                 <SelectValue placeholder="All statuses" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value={ALL_STATUSES}>
-                                    All statuses
-                                </SelectItem>
-                                {Object.entries(statuses).map(
-                                    ([value, label]) => (
-                                        <SelectItem key={value} value={value}>
-                                            {label}
-                                        </SelectItem>
-                                    ),
-                                )}
+                                <JobApplicationStatusSelectOptions
+                                    statuses={statuses}
+                                    includeAllOption
+                                    allOptionLabel="All statuses"
+                                    allOptionValue={ALL_STATUSES}
+                                />
                             </SelectContent>
                         </Select>
                     </div>

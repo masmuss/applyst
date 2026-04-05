@@ -27,7 +27,7 @@ class StoreJobApplicationRequest extends FormRequest
         return [
             'company_name' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
-            'status' => ['sometimes', Rule::enum(JobApplicationStatus::class)],
+            'status' => ['required', Rule::enum(JobApplicationStatus::class)],
             'source' => ['nullable', 'string', 'max:255'],
             'applied_at' => ['nullable', 'date'],
             'job_url' => ['nullable', 'url', 'max:2048'],

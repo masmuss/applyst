@@ -2,11 +2,10 @@ import type { ColumnDef } from '@tanstack/react-table';
 import { ExternalLink } from 'lucide-react';
 import { DataTable } from '@/components/shared/data-table/data-table';
 import { DataTableColumnHeader } from '@/components/shared/data-table/data-table-column-header';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { JobApplicationStatusBadge } from '@/features/job-applications/components/job-application-status';
 import type {
     JobApplicationRecord,
-    JobApplicationStatus,
     JobApplicationStatusLabels,
     JobApplicationsFilters,
     PaginatedJobApplications,
@@ -18,20 +17,6 @@ type Props = {
     filters: JobApplicationsFilters;
     statuses: JobApplicationStatusLabels;
 };
-
-function getStatusBadgeVariant(status: JobApplicationStatus) {
-    switch (status) {
-        case 'rejected':
-            return 'destructive' as const;
-        case 'accepted':
-        case 'interview':
-            return 'default' as const;
-        case 'offering':
-            return 'secondary' as const;
-        default:
-            return 'outline' as const;
-    }
-}
 
 function formatAppliedAt(value: string): string {
     return new Intl.DateTimeFormat('en-GB', {
@@ -79,9 +64,10 @@ function createColumns(
                 const status = row.original.status;
 
                 return (
-                    <Badge variant={getStatusBadgeVariant(status)}>
-                        {statuses[status]}
-                    </Badge>
+                    <JobApplicationStatusBadge
+                        status={status}
+                        label={statuses[status]}
+                    />
                 );
             },
         },
