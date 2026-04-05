@@ -1,3 +1,4 @@
+import { SearchIcon } from 'lucide-react';
 import { useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,11 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput,
+} from '@/components/ui/input-group';
 import { Label } from '@/components/ui/label';
 import {
     Select,
@@ -88,18 +94,25 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
                 >
                     <div className="grid gap-2">
                         <Label htmlFor="job-application-search">Search</Label>
-                        <Input
-                            id="job-application-search"
-                            value={search}
-                            onChange={(event) => setSearch(event.target.value)}
-                            onKeyDown={(event) => {
-                                if (event.key === 'Enter') {
-                                    event.preventDefault();
-                                    event.currentTarget.form?.requestSubmit();
+                        <InputGroup>
+                            <InputGroupInput
+                                id="job-application-search"
+                                value={search}
+                                onChange={(event) =>
+                                    setSearch(event.target.value)
                                 }
-                            }}
-                            placeholder="Company or role"
-                        />
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter') {
+                                        event.preventDefault();
+                                        event.currentTarget.form?.requestSubmit();
+                                    }
+                                }}
+                                placeholder="Company or role"
+                            />
+                            <InputGroupAddon>
+                                <SearchIcon />
+                            </InputGroupAddon>
+                        </InputGroup>
                     </div>
 
                     <div className="grid gap-2">
