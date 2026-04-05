@@ -31,7 +31,11 @@ export type JobApplicationsFilters = {
 
 export type JobApplicationsSummary = {
     total: number;
-    statuses: Record<JobApplicationStatus, number>;
+    statuses: {
+        process: number;
+        accepted: number;
+        rejected: number;
+    };
 };
 
 export type PaginatedJobApplications = PaginationMeta & {

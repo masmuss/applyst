@@ -57,13 +57,17 @@ class JobApplicationController extends Controller
             ->groupBy('status')
             ->pluck('aggregate', 'status');
 
+        $processCount = (int) ($statusCounts['applied'] ?? 0)
+            + (int) ($statusCounts['interview'] ?? 0)
+            + (int) ($statusCounts['offering'] ?? 0);
+
         return [
             'total' => (clone $applicationsQuery)->count(),
-            'statuses' => collect(JobApplication::STATUSES)
-                ->mapWithKeys(fn (string $label, string $status) => [
-                    $status => (int) ($statusCounts[$status] ?? 0),
-                ])
-                ->all(),
+            'statuses' => [
+                'process' => $processCount,
+                'accepted' => (int) ($statusCounts['accepted'] ?? 0),
+                'rejected' => (int) ($statusCounts['rejected'] ?? 0),
+            ],
         ];
     }
 

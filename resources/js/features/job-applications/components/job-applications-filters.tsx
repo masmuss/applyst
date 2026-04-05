@@ -1,6 +1,6 @@
 import { router } from '@inertiajs/react';
 import { useState } from 'react';
-import type { FormEvent } from 'react';
+import type { SyntheticEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -30,7 +30,7 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
     const [status, setStatus] = useState(filters.status ?? ALL_STATUSES);
     const [source, setSource] = useState(filters.source ?? '');
 
-    function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+    function handleSubmit(event: SyntheticEvent<HTMLFormElement>): void {
         event.preventDefault();
 
         router.get(

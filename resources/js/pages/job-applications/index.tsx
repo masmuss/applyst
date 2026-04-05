@@ -1,5 +1,14 @@
 import { Head } from '@inertiajs/react';
+import { Plus } from 'lucide-react';
 import Heading from '@/components/shared/heading';
+import { Button } from '@/components/ui/button';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { JobApplicationsFilters } from '@/features/job-applications/components/job-applications-filters';
 import { JobApplicationsOverview } from '@/features/job-applications/components/job-applications-overview';
 import { JobApplicationsTable } from '@/features/job-applications/components/job-applications-table';
@@ -29,55 +38,45 @@ export default function JobApplicationsIndex({
         <>
             <Head title="Job applications" />
 
-            <h1 className="sr-only">Job applications</h1>
+            <div className="flex h-full flex-col gap-4 p-4 lg:p-8">
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <Heading
+                        title="Job applications"
+                        description="Track and manage your job applications in one place."
+                    />
+                </div>
 
-            <div className="space-y-6">
-                <section className="relative overflow-hidden rounded-4xl border border-border/70 bg-stone-950 p-6 text-stone-50 shadow-sm">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(251,191,36,0.10),transparent_30%)]" />
-                    <div className="relative max-w-3xl space-y-3">
-                        <p className="text-xs font-medium tracking-[0.24em] text-stone-300 uppercase">
-                            Pipeline command center
-                        </p>
-                        <Heading
-                            variant="small"
-                            title="Job applications"
-                            description="Follow every application from first touch to outcome, then sort the table with the same controls you already use elsewhere in the app."
-                        />
-                    </div>
-                    <div className="relative flex flex-wrap gap-2 text-sm text-stone-300">
-                        <span>Feature-driven layout</span>
-                        <span>•</span>
-                        <span>Composable sections</span>
-                        <span>•</span>
-                        <span>Wayfinder-powered filters</span>
-                    </div>
-                </section>
+                <div className="space-y-6">
+                    <JobApplicationsOverview summary={summary} />
 
-                <JobApplicationsOverview
-                    summary={summary}
-                    statuses={statuses}
-                />
-
-                <JobApplicationsFilters filters={filters} statuses={statuses} />
-
-                <div className="rounded-4xl border border-border/70 bg-card p-4 shadow-sm md:p-6">
-                    <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
-                        <div>
-                            <p className="text-sm font-medium text-muted-foreground">
-                                Applications table
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                                Sort, paginate, and inspect the current pipeline
-                                without leaving the page.
-                            </p>
-                        </div>
-                    </div>
-
-                    <JobApplicationsTable
-                        applications={applications}
+                    <JobApplicationsFilters
                         filters={filters}
                         statuses={statuses}
                     />
+
+                    <Card>
+                        <CardHeader className="flex w-full flex-col items-center justify-between md:flex-row">
+                            <div>
+                                <CardTitle>Applications table</CardTitle>
+                                <CardDescription>
+                                    Sort, paginate, and inspect the current
+                                    pipeline without leaving the page.
+                                </CardDescription>
+                            </div>
+                            <Button className="w-full md:w-auto">
+                                <Plus className="h-4 w-4" />
+                                Add new application
+                            </Button>
+                        </CardHeader>
+
+                        <CardContent>
+                            <JobApplicationsTable
+                                applications={applications}
+                                filters={filters}
+                                statuses={statuses}
+                            />
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
         </>

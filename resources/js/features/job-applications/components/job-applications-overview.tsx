@@ -1,61 +1,52 @@
-import { Badge } from '@/components/ui/badge';
-import type {
-    JobApplicationStatusLabels,
-    JobApplicationsSummary,
-} from '@/features/job-applications/types';
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
+import type { JobApplicationsSummary } from '@/features/job-applications/types';
+import { Ban, CheckCircle, Layers, Loader } from 'lucide-react';
 
 type Props = {
     summary: JobApplicationsSummary;
-    statuses: JobApplicationStatusLabels;
 };
 
 const statusCardMeta: Array<{
     key: keyof JobApplicationsSummary['statuses'] | 'total';
     label: string;
     description: string;
-    dot: string;
+    icon: React.ElementType;
 }> = [
     {
         key: 'total',
         label: 'Total',
         description: 'All tracked applications in the current view.',
-        dot: 'bg-stone-700',
+        icon: Layers,
     },
     {
-        key: 'applied',
-        label: 'Applied',
-        description: 'New applications waiting for a response.',
-        dot: 'bg-amber-500',
-    },
-    {
-        key: 'interview',
-        label: 'Interview',
-        description: 'Conversations that are already in motion.',
-        dot: 'bg-sky-500',
-    },
-    {
-        key: 'offering',
-        label: 'Offering',
-        description: 'Offers and compensation discussions.',
-        dot: 'bg-emerald-500',
+        key: 'process',
+        label: 'Process',
+        description: 'Applied, interview, and offering stages.',
+        icon: Loader,
     },
     {
         key: 'accepted',
         label: 'Accepted',
         description: 'Roles that have already been won.',
-        dot: 'bg-lime-500',
+        icon: CheckCircle,
     },
     {
         key: 'rejected',
         label: 'Rejected',
         description: 'Applications that have been closed out.',
-        dot: 'bg-rose-500',
+        icon: Ban,
     },
 ];
 
-export function JobApplicationsOverview({ summary, statuses }: Props) {
+export function JobApplicationsOverview({ summary }: Props) {
     return (
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {statusCardMeta.map((card) => {
                 const value =
                     card.key === 'total'
@@ -63,34 +54,22 @@ export function JobApplicationsOverview({ summary, statuses }: Props) {
                         : summary.statuses[card.key];
 
                 return (
-                    <div
-                        key={card.key}
-                        className="rounded-4xl border border-border/70 bg-card p-5 shadow-sm"
-                    >
-                        <div className="flex items-center justify-between gap-3">
-                            <div className="flex items-center gap-2">
-                                <span
-                                    className={`h-2.5 w-2.5 rounded-full ${card.dot}`}
-                                />
-                                <p className="text-sm font-medium text-muted-foreground">
-                                    {card.key === 'total'
-                                        ? card.label
-                                        : statuses[card.key]}
-                                </p>
-                            </div>
-                            <Badge variant="outline" className="text-xs">
-                                {card.key === 'total' ? 'Overview' : card.key}
-                            </Badge>
-                        </div>
-                        <div className="mt-4 space-y-1">
+                    <Card key={card.key}>
+                        <CardHeader className="flex items-center justify-between gap-3">
+                            <CardTitle className="flex items-center gap-2">
+                                <card.icon className="h-4 w-4" />
+                                {card.label}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-1">
                             <div className="text-3xl font-semibold tracking-tight text-foreground">
                                 {value}
                             </div>
-                            <p className="max-w-sm text-sm text-muted-foreground">
-                                {card.description}
-                            </p>
-                        </div>
-                    </div>
+                        </CardContent>
+                        <CardFooter className="text-xs text-muted-foreground">
+                            {card.description}
+                        </CardFooter>
+                    </Card>
                 );
             })}
         </div>
