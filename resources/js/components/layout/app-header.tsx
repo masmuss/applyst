@@ -1,8 +1,9 @@
 import { Link, usePage } from '@inertiajs/react';
 import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-react';
-import AppLogo from '@/components/app-logo';
-import AppLogoIcon from '@/components/app-logo-icon';
-import { Breadcrumbs } from '@/components/breadcrumbs';
+import AppLogo from '@/components/layout/app-logo';
+import AppLogoIcon from '@/components/layout/app-logo-icon';
+import { Breadcrumbs } from '@/components/layout/breadcrumbs';
+import { UserMenuContent } from '@/components/layout/user-menu-content';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -28,7 +29,6 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { UserMenuContent } from '@/components/user-menu-content';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { useInitials } from '@/hooks/use-initials';
 import { cn, toUrl } from '@/lib/utils';
@@ -80,7 +80,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="mr-2 h-[34px] w-[34px]"
+                                    className="mr-2 h-8.5 w-8.5"
                                 >
                                     <Menu className="h-5 w-5" />
                                 </Button>
@@ -183,7 +183,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                 size="icon"
                                 className="group h-9 w-9 cursor-pointer"
                             >
-                                <Search className="!size-5 opacity-80 group-hover:opacity-100" />
+                                <Search className="size-5! opacity-80 group-hover:opacity-100" />
                             </Button>
                             <div className="ml-1 hidden gap-1 lg:flex">
                                 {rightNavItems.map((item) => (

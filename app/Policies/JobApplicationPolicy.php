@@ -10,7 +10,7 @@ class JobApplicationPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(): bool
     {
         return false;
     }
@@ -20,15 +20,15 @@ class JobApplicationPolicy
      */
     public function view(User $user, JobApplication $jobApplication): bool
     {
-        return false;
+        return $user->id === $jobApplication->user_id;
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -36,7 +36,7 @@ class JobApplicationPolicy
      */
     public function update(User $user, JobApplication $jobApplication): bool
     {
-        return false;
+        return $user->id === $jobApplication->user_id;
     }
 
     /**
@@ -44,7 +44,7 @@ class JobApplicationPolicy
      */
     public function delete(User $user, JobApplication $jobApplication): bool
     {
-        return false;
+        return $user->id === $jobApplication->user_id;
     }
 
     /**
@@ -52,7 +52,7 @@ class JobApplicationPolicy
      */
     public function restore(User $user, JobApplication $jobApplication): bool
     {
-        return false;
+        return $user->id === $jobApplication->user_id;
     }
 
     /**
@@ -60,6 +60,6 @@ class JobApplicationPolicy
      */
     public function forceDelete(User $user, JobApplication $jobApplication): bool
     {
-        return false;
+        return $user->id === $jobApplication->user_id;
     }
 }

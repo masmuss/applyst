@@ -1,9 +1,14 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
-import AppLogo from '@/components/app-logo';
-import { NavFooter } from '@/components/nav-footer';
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
+import {
+    BookOpen,
+    BriefcaseBusiness,
+    FolderGit2,
+    LayoutGrid,
+} from 'lucide-react';
+import AppLogo from '@/components/layout/app-logo';
+import { NavFooter } from '@/components/layout/nav-footer';
+import { NavMain } from '@/components/layout/nav-main';
+import { NavUser } from '@/components/layout/nav-user';
 import {
     Sidebar,
     SidebarContent,
@@ -14,6 +19,7 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import jobApplications from '@/routes/job-applications';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -21,6 +27,11 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Job applications',
+        href: jobApplications.index(),
+        icon: BriefcaseBusiness,
     },
 ];
 

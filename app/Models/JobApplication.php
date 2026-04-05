@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\HasAdvancedTable;
+use App\Traits\HasFilters;
 use Database\Factories\JobApplicationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class JobApplication extends Model
 {
     /** @use HasFactory<JobApplicationFactory> */
-    use HasFactory, SoftDeletes;
+    use HasAdvancedTable, HasFactory, HasFilters, SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -27,6 +29,16 @@ class JobApplication extends Model
 
     protected $casts = [
         'applied_at' => 'date',
+    ];
+
+    protected array $filterable = [
+        'status' => '=',
+        'source' => 'like',
+    ];
+
+    protected array $searchable = [
+        'company_name',
+        'position',
     ];
 
     const STATUSES = [
