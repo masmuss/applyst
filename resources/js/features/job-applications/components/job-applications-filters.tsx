@@ -1,16 +1,28 @@
+import { SearchIcon } from 'lucide-react';
 import { useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput,
+} from '@/components/ui/input-group';
 import { Label } from '@/components/ui/label';
 import {
     Select,
     SelectContent,
-    SelectItem,
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { JobApplicationStatusSelectOptions } from '@/features/job-applications/components/job-application-status';
 import type {
     JobApplicationStatusLabels,
     JobApplicationsFilters,
@@ -67,8 +79,13 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
 
     return (
         <Card>
-            <CardHeader className="pb-4">
+            <CardHeader>
                 <CardTitle>Refine your pipeline</CardTitle>
+                <CardDescription>
+                    Use the filters below to narrow down the applications shown
+                    in the table. You can combine multiple filters to find
+                    specific applications.
+                </CardDescription>
             </CardHeader>
             <CardContent>
                 <form
@@ -77,18 +94,25 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
                 >
                     <div className="grid gap-2">
                         <Label htmlFor="job-application-search">Search</Label>
-                        <Input
-                            id="job-application-search"
-                            value={search}
-                            onChange={(event) => setSearch(event.target.value)}
-                            onKeyDown={(event) => {
-                                if (event.key === 'Enter') {
-                                    event.preventDefault();
-                                    event.currentTarget.form?.requestSubmit();
+                        <InputGroup>
+                            <InputGroupInput
+                                id="job-application-search"
+                                value={search}
+                                onChange={(event) =>
+                                    setSearch(event.target.value)
                                 }
-                            }}
-                            placeholder="Company or role"
-                        />
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter') {
+                                        event.preventDefault();
+                                        event.currentTarget.form?.requestSubmit();
+                                    }
+                                }}
+                                placeholder="Company or role"
+                            />
+                            <InputGroupAddon>
+                                <SearchIcon />
+                            </InputGroupAddon>
+                        </InputGroup>
                     </div>
 
                     <div className="grid gap-2">
@@ -98,16 +122,12 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
                                 <SelectValue placeholder="All statuses" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value={ALL_STATUSES}>
-                                    All statuses
-                                </SelectItem>
-                                {Object.entries(statuses).map(
-                                    ([value, label]) => (
-                                        <SelectItem key={value} value={value}>
-                                            {label}
-                                        </SelectItem>
-                                    ),
-                                )}
+                                <JobApplicationStatusSelectOptions
+                                    statuses={statuses}
+                                    includeAllOption
+                                    allOptionLabel="All statuses"
+                                    allOptionValue={ALL_STATUSES}
+                                />
                             </SelectContent>
                         </Select>
                     </div>

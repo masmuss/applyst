@@ -1,7 +1,5 @@
 import { Head } from '@inertiajs/react';
-import { Plus } from 'lucide-react';
 import Heading from '@/components/shared/heading';
-import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -9,6 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { JobApplicationCreateDialog } from '@/features/job-applications/components/job-application-create-dialog';
 import { JobApplicationsFilters } from '@/features/job-applications/components/job-applications-filters';
 import { JobApplicationsOverview } from '@/features/job-applications/components/job-applications-overview';
 import { JobApplicationsTable } from '@/features/job-applications/components/job-applications-table';
@@ -63,10 +62,7 @@ export default function JobApplicationsIndex({
                                     pipeline without leaving the page.
                                 </CardDescription>
                             </div>
-                            <Button className="w-full md:w-auto">
-                                <Plus className="h-4 w-4" />
-                                Add new application
-                            </Button>
+                            <JobApplicationCreateDialog statuses={statuses} />
                         </CardHeader>
 
                         <CardContent>

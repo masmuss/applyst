@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\JobApplicationStatus;
 use App\Models\JobApplication;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +21,10 @@ class JobApplicationFactory extends Factory
         return [
             'company_name' => fake()->company(),
             'position' => fake()->jobTitle(),
-            'status' => fake()->randomElement(array_keys(JobApplication::STATUSES)),
+            'status' => fake()->randomElement(array_map(
+                static fn (JobApplicationStatus $status): string => $status->value,
+                JobApplicationStatus::cases(),
+            )),
             'source' => fake()->randomElement([
                 'LinkedIn',
                 'Company Website',

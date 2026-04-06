@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\JobApplicationController;
 use App\Models\JobApplication;
+use App\Policies\JobApplicationPolicy;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::policy(JobApplication::class, JobApplicationController::class);
+        Gate::policy(JobApplication::class, JobApplicationPolicy::class);
     }
 
     /**
