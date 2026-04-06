@@ -1,6 +1,7 @@
 import { Form } from '@inertiajs/react';
 import { Pencil } from 'lucide-react';
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import { toast } from 'sonner';
 import AlertError from '@/components/shared/alert-error';
 import { Button } from '@/components/ui/button';
@@ -37,6 +38,7 @@ import jobApplications from '@/routes/job-applications';
 type Props = {
     jobApplication: JobApplicationRecord;
     statuses: JobApplicationStatusLabels;
+    trigger?: ReactNode;
 };
 
 function toDateInputValue(value: string): string {
@@ -46,16 +48,19 @@ function toDateInputValue(value: string): string {
 export function JobApplicationUpdateDialog({
     jobApplication,
     statuses,
+    trigger,
 }: Props) {
     const [open, setOpen] = useState<boolean>(false);
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline" size="sm">
-                    <Pencil data-icon="inline-start" />
-                    Edit
-                </Button>
+                {trigger ?? (
+                    <Button variant="outline" size="sm">
+                        <Pencil data-icon="inline-start" />
+                        Edit
+                    </Button>
+                )}
             </DialogTrigger>
 
             <DialogContent className="sm:max-w-2xl">

@@ -1,6 +1,7 @@
 import { router } from '@inertiajs/react';
 import { Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import { toast } from 'sonner';
 import {
     AlertDialog,
@@ -19,9 +20,10 @@ import jobApplications from '@/routes/job-applications';
 
 type Props = {
     jobApplication: JobApplicationRecord;
+    trigger?: ReactNode;
 };
 
-export function JobApplicationDeleteDialog({ jobApplication }: Props) {
+export function JobApplicationDeleteDialog({ jobApplication, trigger }: Props) {
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
     function handleDelete(): void {
@@ -44,10 +46,12 @@ export function JobApplicationDeleteDialog({ jobApplication }: Props) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button variant="destructive" size="sm">
-                    <Trash2 data-icon="inline-start" />
-                    Delete
-                </Button>
+                {trigger ?? (
+                    <Button variant="destructive" size="sm">
+                        <Trash2 data-icon="inline-start" />
+                        Delete
+                    </Button>
+                )}
             </AlertDialogTrigger>
 
             <AlertDialogContent>

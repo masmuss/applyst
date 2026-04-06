@@ -80,6 +80,9 @@ export function JobApplicationCreateForm({
                                         placeholder="Nusantara Tech"
                                         autoComplete="organization"
                                         required
+                                        aria-invalid={Boolean(
+                                            errors.company_name,
+                                        )}
                                     />
                                     <FieldError>
                                         {errors.company_name}
@@ -98,6 +101,7 @@ export function JobApplicationCreateForm({
                                         placeholder="Frontend Engineer"
                                         autoComplete="off"
                                         required
+                                        aria-invalid={Boolean(errors.position)}
                                     />
                                     <FieldError>{errors.position}</FieldError>
                                 </FieldContent>
@@ -112,6 +116,7 @@ export function JobApplicationCreateForm({
                                         name="status"
                                         defaultValue="applied"
                                         required
+                                        aria-invalid={Boolean(errors.status)}
                                     >
                                         <SelectTrigger className="w-full">
                                             <SelectValue placeholder="Select status" />
@@ -136,6 +141,9 @@ export function JobApplicationCreateForm({
                                         name="applied_at"
                                         type="date"
                                         defaultValue={todayAsInputValue()}
+                                        aria-invalid={Boolean(
+                                            errors.applied_at,
+                                        )}
                                     />
                                     <FieldError>{errors.applied_at}</FieldError>
                                 </FieldContent>
@@ -150,6 +158,7 @@ export function JobApplicationCreateForm({
                                         id="source"
                                         name="source"
                                         placeholder="LinkedIn, referral, company site"
+                                        aria-invalid={Boolean(errors.source)}
                                     />
                                     <FieldError>{errors.source}</FieldError>
                                 </FieldContent>
@@ -164,6 +173,8 @@ export function JobApplicationCreateForm({
                                         id="job_url"
                                         name="job_url"
                                         placeholder="https://..."
+                                        type="url"
+                                        aria-invalid={Boolean(errors.job_url)}
                                     />
                                     <FieldError>{errors.job_url}</FieldError>
                                 </FieldContent>

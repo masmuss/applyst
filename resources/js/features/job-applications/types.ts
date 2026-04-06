@@ -18,6 +18,22 @@ export type JobApplicationRecord = {
     notes: string | null;
 };
 
+export type JobApplicationDetail = JobApplicationRecord & {
+    created_at: string | null;
+    updated_at: string | null;
+};
+
+export type JobApplicationStatusLog = {
+    id: number;
+    from_status: JobApplicationStatus | null;
+    from_label: string | null;
+    to_status: JobApplicationStatus;
+    to_label: string;
+    notes: string | null;
+    changed_at: string | null;
+    created_at: string | null;
+};
+
 export type JobApplicationStatusLabels = Record<JobApplicationStatus, string>;
 
 export type JobApplicationsFilters = {

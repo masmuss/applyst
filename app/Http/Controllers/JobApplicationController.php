@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\JobApplicationStatus;
 use App\Http\Requests\StoreJobApplicationRequest;
 use App\Http\Requests\UpdateJobApplicationRequest;
+use App\Models\ApplicationStatusLog;
 use App\Models\JobApplication;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
@@ -103,6 +104,34 @@ class JobApplicationController extends Controller
 
         $jobApplication->load([
             'statusLogs' => fn ($q) => $q->oldest('created_at'),
+        ]);
+
+        return Inertia::render('job-applications/show', [
+            'jobApplication' => [
+                'id' => $jobApplication->id,
+                'company_name' => $jobApplication->company_name,
+                'position' => $jobApplication->position,
+                'status' => $jobApplication->status,
+                'source' => $jobApplication->source,
+                'applied_at' => $jobApplication->applied_at?->toDateString(),
+                'job_url' => $jobApplication->job_url,
+                'notes' => $jobApplication->notes,
+                'created_at' => $jobApplication->created_at?->toIso8601String(),
+                'updated_at' => $jobApplication->updated_at?->toIso8601String(),
+            ],
+            'statusLogs' => $jobApplication->statusLogs
+                ->map(fn (ApplicationStatusLog $log) => [
+                    'id' => $log->id,
+                    'from_status' => $log->from_status,
+                    'from_label' => $log->from_label,
+                    'to_status' => $log->to_status,
+                    'to_label' => $log->to_label,
+                    'notes' => $log->notes,
+                    'changed_at' => $log->changed_at?->toIso8601String(),
+                    'created_at' => $log->created_at?->toIso8601String(),
+                ])
+                ->values(),
+            'statuses' => JobApplication::statuses(),
         ]);
     }
 
