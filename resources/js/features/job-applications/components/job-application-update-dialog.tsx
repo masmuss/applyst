@@ -13,27 +13,12 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import {
-    Field,
-    FieldContent,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-} from '@/components/ui/field';
-import { Input } from '@/components/ui/input';
-import {
-    Select,
-    SelectContent,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
-import { JobApplicationStatusSelectOptions } from '@/features/job-applications/components/job-application-status';
 import type {
     JobApplicationRecord,
     JobApplicationStatusLabels,
 } from '@/features/job-applications/types';
 import jobApplications from '@/routes/job-applications';
+import { JobApplicationFormFields } from '@/features/job-applications/components/job-application-form-fields';
 
 type Props = {
     jobApplication: JobApplicationRecord;
@@ -99,167 +84,23 @@ export function JobApplicationUpdateDialog({
                                     />
                                 ) : null}
 
-                                <FieldGroup className="grid gap-4 md:grid-cols-2">
-                                    <Field>
-                                        <FieldContent>
-                                            <FieldLabel
-                                                htmlFor={`company_name-${jobApplication.id}`}
-                                            >
-                                                Company name
-                                            </FieldLabel>
-                                            <Input
-                                                id={`company_name-${jobApplication.id}`}
-                                                name="company_name"
-                                                defaultValue={
-                                                    jobApplication.company_name
-                                                }
-                                                placeholder="Nusantara Tech"
-                                                autoComplete="organization"
-                                            />
-                                            <FieldError>
-                                                {errors.company_name}
-                                            </FieldError>
-                                        </FieldContent>
-                                    </Field>
-
-                                    <Field>
-                                        <FieldContent>
-                                            <FieldLabel
-                                                htmlFor={`position-${jobApplication.id}`}
-                                            >
-                                                Position
-                                            </FieldLabel>
-                                            <Input
-                                                id={`position-${jobApplication.id}`}
-                                                name="position"
-                                                defaultValue={
-                                                    jobApplication.position
-                                                }
-                                                placeholder="Frontend Engineer"
-                                                autoComplete="off"
-                                            />
-                                            <FieldError>
-                                                {errors.position}
-                                            </FieldError>
-                                        </FieldContent>
-                                    </Field>
-
-                                    <Field>
-                                        <FieldContent>
-                                            <FieldLabel
-                                                htmlFor={`status-${jobApplication.id}`}
-                                            >
-                                                Status
-                                            </FieldLabel>
-                                            <Select
-                                                name="status"
-                                                defaultValue={
-                                                    jobApplication.status
-                                                }
-                                            >
-                                                <SelectTrigger
-                                                    id={`status-${jobApplication.id}`}
-                                                    className="w-full"
-                                                >
-                                                    <SelectValue placeholder="Select status" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <JobApplicationStatusSelectOptions
-                                                        statuses={statuses}
-                                                    />
-                                                </SelectContent>
-                                            </Select>
-                                            <FieldError>
-                                                {errors.status}
-                                            </FieldError>
-                                        </FieldContent>
-                                    </Field>
-
-                                    <Field>
-                                        <FieldContent>
-                                            <FieldLabel
-                                                htmlFor={`applied_at-${jobApplication.id}`}
-                                            >
-                                                Applied at
-                                            </FieldLabel>
-                                            <Input
-                                                id={`applied_at-${jobApplication.id}`}
-                                                name="applied_at"
-                                                type="date"
-                                                defaultValue={toDateInputValue(
-                                                    jobApplication.applied_at,
-                                                )}
-                                            />
-                                            <FieldError>
-                                                {errors.applied_at}
-                                            </FieldError>
-                                        </FieldContent>
-                                    </Field>
-
-                                    <Field>
-                                        <FieldContent>
-                                            <FieldLabel
-                                                htmlFor={`source-${jobApplication.id}`}
-                                            >
-                                                Source
-                                            </FieldLabel>
-                                            <Input
-                                                id={`source-${jobApplication.id}`}
-                                                name="source"
-                                                defaultValue={
-                                                    jobApplication.source ?? ''
-                                                }
-                                                placeholder="LinkedIn, referral, company site"
-                                            />
-                                            <FieldError>
-                                                {errors.source}
-                                            </FieldError>
-                                        </FieldContent>
-                                    </Field>
-
-                                    <Field>
-                                        <FieldContent>
-                                            <FieldLabel
-                                                htmlFor={`job_url-${jobApplication.id}`}
-                                            >
-                                                Job URL
-                                            </FieldLabel>
-                                            <Input
-                                                id={`job_url-${jobApplication.id}`}
-                                                name="job_url"
-                                                defaultValue={
-                                                    jobApplication.job_url ?? ''
-                                                }
-                                                placeholder="https://..."
-                                            />
-                                            <FieldError>
-                                                {errors.job_url}
-                                            </FieldError>
-                                        </FieldContent>
-                                    </Field>
-
-                                    <Field className="md:col-span-2">
-                                        <FieldContent>
-                                            <FieldLabel
-                                                htmlFor={`notes-${jobApplication.id}`}
-                                            >
-                                                Notes
-                                            </FieldLabel>
-                                            <Textarea
-                                                id={`notes-${jobApplication.id}`}
-                                                name="notes"
-                                                defaultValue={
-                                                    jobApplication.notes ?? ''
-                                                }
-                                                placeholder="Follow-up date, contact name, interview notes, and so on."
-                                                className="min-h-28"
-                                            />
-                                            <FieldError>
-                                                {errors.notes}
-                                            </FieldError>
-                                        </FieldContent>
-                                    </Field>
-                                </FieldGroup>
+                                <JobApplicationFormFields
+                                    statuses={statuses}
+                                    errors={errors}
+                                    defaults={{
+                                        company_name:
+                                            jobApplication.company_name,
+                                        position: jobApplication.position,
+                                        status: jobApplication.status,
+                                        applied_at: toDateInputValue(
+                                            jobApplication.applied_at,
+                                        ),
+                                        source: jobApplication.source,
+                                        job_url: jobApplication.job_url,
+                                        notes: jobApplication.notes,
+                                    }}
+                                    idSuffix={`-${jobApplication.id}`}
+                                />
 
                                 <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
                                     <Button
