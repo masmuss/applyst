@@ -1,11 +1,11 @@
 import { DataTable } from '@/components/shared/data-table/data-table';
+import { defineJobApplicationsTableColumns } from '@/features/job-applications/components/job-applications-table-columns';
 import type {
     JobApplicationStatusLabels,
     JobApplicationsFilters,
     PaginatedJobApplications,
 } from '@/features/job-applications/types';
 import jobApplications from '@/routes/job-applications';
-import { defineJobApplicationsTableColumns } from '@/features/job-applications/components/job-applications-table-columns';
 
 type Props = {
     applications: PaginatedJobApplications;
