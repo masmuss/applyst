@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react';
 import Heading from '@/components/shared/heading';
 import {
     Card,
+    CardAction,
     CardContent,
     CardDescription,
     CardHeader,
@@ -54,15 +55,17 @@ export default function JobApplicationsIndex({
                     />
 
                     <Card>
-                        <CardHeader className="flex w-full flex-col items-center justify-between md:flex-row">
-                            <div>
-                                <CardTitle>Applications table</CardTitle>
-                                <CardDescription>
-                                    Sort, paginate, and inspect the current
-                                    pipeline without leaving the page.
-                                </CardDescription>
-                            </div>
-                            <JobApplicationCreateDialog statuses={statuses} />
+                        <CardHeader>
+                            <CardTitle>Applications table</CardTitle>
+                            <CardDescription>
+                                Sort, paginate, and inspect the current pipeline
+                                without leaving the page.
+                            </CardDescription>
+                            <CardAction>
+                                <JobApplicationCreateDialog
+                                    statuses={statuses}
+                                />
+                            </CardAction>
                         </CardHeader>
 
                         <CardContent>
