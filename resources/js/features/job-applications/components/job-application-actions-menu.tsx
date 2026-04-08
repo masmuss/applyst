@@ -8,13 +8,13 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { JobApplicationDeleteDialog } from '@/features/job-applications/components/job-application-delete-dialog';
 import { JobApplicationUpdateDialog } from '@/features/job-applications/components/job-application-update-dialog';
 import type {
     JobApplicationRecord,
     JobApplicationStatusLabels,
 } from '@/features/job-applications/types';
 import jobApplications from '@/routes/job-applications';
-import { JobApplicationDeleteDialog } from '@/features/job-applications/components/job-application-delete-dialog';
 
 type Props = {
     jobApplication: JobApplicationRecord;

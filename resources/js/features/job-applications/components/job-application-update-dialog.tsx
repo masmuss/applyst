@@ -13,12 +13,12 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
+import { JobApplicationFormFields } from '@/features/job-applications/components/job-application-form-fields';
 import type {
     JobApplicationRecord,
     JobApplicationStatusLabels,
 } from '@/features/job-applications/types';
 import jobApplications from '@/routes/job-applications';
-import { JobApplicationFormFields } from '@/features/job-applications/components/job-application-form-fields';
 
 type Props = {
     jobApplication: JobApplicationRecord;

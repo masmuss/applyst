@@ -2,9 +2,9 @@ import { Form } from '@inertiajs/react';
 import { toast } from 'sonner';
 import AlertError from '@/components/shared/alert-error';
 import { Button } from '@/components/ui/button';
+import { JobApplicationFormFields } from '@/features/job-applications/components/job-application-form-fields';
 import type { JobApplicationStatusLabels } from '@/features/job-applications/types';
 import jobApplications from '@/routes/job-applications';
-import { JobApplicationFormFields } from '@/features/job-applications/components/job-application-form-fields';
 
 type Props = {
     statuses: JobApplicationStatusLabels;
