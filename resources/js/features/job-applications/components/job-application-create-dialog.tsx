@@ -31,10 +31,9 @@ export function JobApplicationCreateDialog({ statuses }: Props) {
             <DialogContent className="sm:max-w-2xl">
                 <DialogHeader>
                     <DialogTitle>Create job application</DialogTitle>
-                    <DialogDescription>
-                        Fill in the core details below. Validation is handled by
-                        the Laravel form request, and any errors will be shown
-                        inline here.
+                    <DialogDescription className="max-w-lg">
+                        Add the essentials first, then update notes, links, or
+                        status changes as your application moves forward.
                     </DialogDescription>
                 </DialogHeader>
 
