@@ -1,0 +1,28 @@
+assert_lefthook_installed: true
+remotes:
+    - git_url: https://github.com/masmuss/applyst.git
+
+pre-commit:
+    jobs:
+        - name: prettier-check
+          glob: '*.{js,jsx,ts,tsx,css,scss,json,md,yml,yaml}'
+          exclude: '^(node_modules|vendor)/'
+          run: npx prettier --check {staged_files}
+
+        - name: eslint-check
+          glob: '*.{js,jsx,ts,tsx}'
+          exclude: '^(node_modules|vendor)/'
+          run: npx eslint --no-warn-ignored {staged_files}
+
+        - name: types-check
+          exclude: '^(node_modules|vendor)/'
+          run: npm run types:check
+
+        - name: pint-check
+          exclude: '^(node_modules|vendor)/'
+          run: composer lint:check
+
+pre-push:
+    jobs:
+        - name: test-suite
+          run: composer test
