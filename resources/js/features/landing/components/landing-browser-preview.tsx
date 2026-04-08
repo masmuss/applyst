@@ -1,19 +1,31 @@
-import { LandingStatusBadge } from '@/features/landing/components/landing-status-badge';
+import { JobApplicationStatusBadge } from '@/features/job-applications/components/job-application-status';
 import {
     browserStats,
     mockApplications,
 } from '@/features/landing/landing-data';
-import { cn } from '@/lib/utils';
+import { cn, toTitleCase } from '@/lib/utils';
 
 export function LandingBrowserPreview() {
+    const trafficLights: string[] = [
+        'bg-rose-500/60',
+        'bg-amber-500/60',
+        'bg-emerald-500/60',
+    ];
+
     return (
-        <div className="relative mx-auto mt-14 max-w-4xl">
+        <div className="relative mx-auto mt-14 hidden max-w-4xl md:block">
             <div className="overflow-hidden rounded-xl border border-border/50 bg-card shadow-2xl">
                 <div className="flex items-center gap-1.5 border-b border-border/50 bg-muted/30 px-4 py-3">
-                    <div className="h-2.5 w-2.5 rounded-full bg-rose-500/60" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-amber-500/60" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/60" />
-                    <div className="ml-3 flex h-5 max-w-48 flex-1 items-center rounded-md bg-muted/60 px-2 text-xs text-muted-foreground/50">
+                    {trafficLights.map((_, index) => (
+                        <div
+                            key={index}
+                            className={cn(
+                                'h-2.5 w-2.5 rounded-full',
+                                trafficLights[index],
+                            )}
+                        />
+                    ))}
+                    <div className="ml-3 flex h-5 max-w-full flex-1 items-center rounded-md bg-muted/60 p-4 text-xs text-muted-foreground/50">
                         app.applyst.id
                     </div>
                 </div>
@@ -43,7 +55,7 @@ export function LandingBrowserPreview() {
                             <span>Company</span>
                             <span>Role</span>
                             <span>Status</span>
-                            <span>Date</span>
+                            <span>Applied</span>
                         </div>
                         {mockApplications.map((application, index) => (
                             <div
@@ -54,7 +66,7 @@ export function LandingBrowserPreview() {
                                         'border-b border-border/30',
                                 )}
                             >
-                                <div>
+                                <div className="text-left">
                                     <div className="font-medium">
                                         {application.company}
                                     </div>
@@ -65,9 +77,12 @@ export function LandingBrowserPreview() {
                                 <span className="text-muted-foreground">
                                     {application.position}
                                 </span>
-                                <LandingStatusBadge
-                                    status={application.status}
-                                />
+                                <div>
+                                    <JobApplicationStatusBadge
+                                        status={application.status}
+                                        label={toTitleCase(application.status)}
+                                    />
+                                </div>
                                 <span className="text-xs text-muted-foreground">
                                     {application.date}
                                 </span>
