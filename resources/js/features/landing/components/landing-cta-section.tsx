@@ -10,7 +10,7 @@ type Props = {
 export function LandingCtaSection({ canRegister = true }: Props) {
     return (
         <section className="border-t border-border/40 bg-muted/20 py-20">
-            <div className="mx-auto max-w-xl px-6 text-center">
+            <div className="mx-auto max-w-2xl px-6 text-center">
                 <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
                     Start tracking your applications today
                 </h2>

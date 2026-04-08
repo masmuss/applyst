@@ -50,45 +50,59 @@ export function LandingBrowserPreview() {
                         ))}
                     </div>
 
-                    <div className="overflow-hidden rounded-lg border border-border/50">
-                        <div className="grid grid-cols-[1.5fr_1.5fr_1fr_1fr] border-b border-border/50 bg-muted/30 px-4 py-2.5 text-xs font-medium text-muted-foreground">
-                            <span>Company</span>
-                            <span>Role</span>
-                            <span>Status</span>
-                            <span>Applied</span>
-                        </div>
-                        {mockApplications.map((application, index) => (
-                            <div
-                                key={application.company}
-                                className={cn(
-                                    'grid grid-cols-[1.5fr_1.5fr_1fr_1fr] items-center px-4 py-3 text-sm',
-                                    index < mockApplications.length - 1 &&
-                                        'border-b border-border/30',
-                                )}
-                            >
-                                <div className="text-left">
-                                    <div className="font-medium">
-                                        {application.company}
-                                    </div>
-                                    <div className="text-xs text-muted-foreground">
-                                        {application.source}
-                                    </div>
-                                </div>
-                                <span className="text-muted-foreground">
-                                    {application.position}
-                                </span>
-                                <div>
-                                    <JobApplicationStatusBadge
-                                        status={application.status}
-                                        label={toTitleCase(application.status)}
-                                    />
-                                </div>
-                                <span className="text-xs text-muted-foreground">
-                                    {application.date}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
+                    <table className="w-full overflow-hidden rounded-lg border border-border/50 text-sm">
+                        <thead className="border-b border-border/50 bg-muted/30 text-xs font-medium text-muted-foreground">
+                            <tr>
+                                <th className="px-4 py-2.5 text-left font-medium">
+                                    Company
+                                </th>
+                                <th className="px-4 py-2.5 text-left font-medium">
+                                    Role
+                                </th>
+                                <th className="px-4 py-2.5 text-left font-medium">
+                                    Status
+                                </th>
+                                <th className="px-4 py-2.5 text-left font-medium">
+                                    Applied
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {mockApplications.map((application, index) => (
+                                <tr
+                                    key={application.company}
+                                    className={cn(
+                                        'align-middle',
+                                        index < mockApplications.length - 1 &&
+                                            'border-b border-border/30',
+                                    )}
+                                >
+                                    <td className="px-4 py-3 text-left">
+                                        <div className="font-medium">
+                                            {application.company}
+                                        </div>
+                                        <div className="text-xs text-muted-foreground">
+                                            {application.source}
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3 text-muted-foreground">
+                                        {application.position}
+                                    </td>
+                                    <td className="px-4 py-3">
+                                        <JobApplicationStatusBadge
+                                            status={application.status}
+                                            label={toTitleCase(
+                                                application.status,
+                                            )}
+                                        />
+                                    </td>
+                                    <td className="px-4 py-3 text-xs text-muted-foreground">
+                                        {application.date}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
