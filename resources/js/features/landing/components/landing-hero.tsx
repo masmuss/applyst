@@ -1,5 +1,6 @@
 import { Link } from '@inertiajs/react';
 import { ArrowRightIcon } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LandingBrowserPreview } from '@/features/landing/components/landing-browser-preview';
 import { login, register } from '@/routes';
@@ -11,13 +12,13 @@ type Props = {
 export function LandingHero({ canRegister = true }: Props) {
     return (
         <section className="relative mx-auto max-w-6xl px-6 pt-20 pb-16 text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border/50 bg-muted/50 px-3 py-1 text-xs text-muted-foreground">
+            <Badge variant="outline" className="mb-4 gap-2 p-3">
                 <span className="relative flex h-1.5 w-1.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500"></span>
                 </span>
                 Free for everyone
-            </div>
+            </Badge>
 
             <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
                 Where have you applied so far?{' '}
