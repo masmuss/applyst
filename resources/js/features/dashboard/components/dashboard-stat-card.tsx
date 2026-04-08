@@ -1,0 +1,66 @@
+import { CircleHelp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from '@/components/ui/tooltip';
+
+export function DashboardStatCard({
+    title,
+    description,
+    tooltip,
+    value,
+    supportingText,
+}: {
+    title: string;
+    description: string;
+    tooltip: string;
+    value: string;
+    supportingText: string;
+}) {
+    return (
+        <Card className="border-sidebar-border/70 bg-linear-to-br from-background via-background to-muted/30 shadow-sm dark:border-sidebar-border">
+            <CardHeader>
+                <CardTitle>{title}</CardTitle>
+                <CardDescription>{description}</CardDescription>
+                <CardAction>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                size="icon-xs"
+                                className="rounded-full"
+                            >
+                                <span className="sr-only">More details</span>
+                                <CircleHelp className="size-4" />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p className="max-w-xs text-left">{tooltip}</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </CardAction>
+            </CardHeader>
+            <CardContent className="flex items-end justify-between gap-4">
+                <div className="space-y-1">
+                    <p className="text-3xl font-semibold tracking-tight">
+                        {value}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                        {supportingText}
+                    </p>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}

@@ -1,5 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
-import { ArrowUpRight, CircleHelp } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Heading from '@/components/shared/heading';
 import { Button } from '@/components/ui/button';
 import {
@@ -17,45 +17,12 @@ import {
     EmptyHeader,
     EmptyTitle,
 } from '@/components/ui/empty';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { DashboardStatCard } from '@/features/dashboard/components/dashboard-stat-card';
+import { RecentApplicationRow } from '@/features/dashboard/components/recent-application-row';
+import type { DashboardPageProps } from '@/features/dashboard/types';
 import { JobApplicationCreateDialog } from '@/features/job-applications/components/job-application-create-dialog';
-import { JobApplicationStatusBadge } from '@/features/job-applications/components/job-application-status';
-import type {
-    JobApplicationRecord,
-    JobApplicationStatusLabels,
-} from '@/features/job-applications/types';
 import { dashboard } from '@/routes';
 import jobApplications from '@/routes/job-applications';
-
-type DashboardStats = {
-    responseRate: {
-        value: number;
-        matchingApplications: number;
-        totalApplications: number;
-    };
-    conversionRate: {
-        value: number;
-        matchingApplications: number;
-        totalApplications: number;
-    };
-    oldestActive: {
-        days: number | null;
-        company_name: string | null;
-        position: string | null;
-        applied_at: string | null;
-        activeApplications: number;
-    };
-};
-
-type Props = {
-    stats: DashboardStats;
-    recentApplications: JobApplicationRecord[];
-    statuses: JobApplicationStatusLabels;
-};
 
 function formatPercent(value: number): string {
     return `${new Intl.NumberFormat('en-US', {
@@ -79,96 +46,11 @@ function formatDays(value: number): string {
     return `${value} day${value === 1 ? '' : 's'}`;
 }
 
-function DashboardStatCard({
-    title,
-    description,
-    tooltip,
-    value,
-    supportingText,
-}: {
-    title: string;
-    description: string;
-    tooltip: string;
-    value: string;
-    supportingText: string;
-}) {
-    return (
-        <Card className="border-sidebar-border/70 bg-linear-to-br from-background via-background to-muted/30 shadow-sm dark:border-sidebar-border">
-            <CardHeader>
-                <CardTitle>{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
-                <CardAction>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                type="button"
-                                variant="ghost"
-                                size="icon-xs"
-                                className="rounded-full"
-                            >
-                                <span className="sr-only">More details</span>
-                                <CircleHelp className="size-4" />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p className="max-w-xs text-left">{tooltip}</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </CardAction>
-            </CardHeader>
-            <CardContent className="flex items-end justify-between gap-4">
-                <div className="space-y-1">
-                    <p className="text-3xl font-semibold tracking-tight">
-                        {value}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                        {supportingText}
-                    </p>
-                </div>
-            </CardContent>
-        </Card>
-    );
-}
-
-function RecentApplicationRow({
-    application,
-    label,
-}: {
-    application: JobApplicationRecord;
-    label: string;
-}) {
-    return (
-        <Link
-            href={jobApplications.show(application.id).url}
-            className="flex items-center justify-between gap-4 rounded-2xl border border-border/60 p-4 transition-colors hover:bg-muted/40"
-        >
-            <div className="min-w-0 space-y-1">
-                <p className="truncate font-medium text-foreground">
-                    {application.company_name}
-                </p>
-                <p className="truncate text-sm text-muted-foreground">
-                    {application.position}
-                </p>
-            </div>
-
-            <div className="flex shrink-0 flex-col items-end gap-2 text-right">
-                <JobApplicationStatusBadge
-                    status={application.status}
-                    label={label}
-                />
-                <p className="text-xs text-muted-foreground">
-                    Applied {formatShortDate(application.applied_at)}
-                </p>
-            </div>
-        </Link>
-    );
-}
-
 export default function Dashboard({
     stats,
     recentApplications,
     statuses,
-}: Props) {
+}: DashboardPageProps) {
     const hasRecentApplications = recentApplications.length > 0;
     const oldestActiveDescription = stats.oldestActive.company_name
         ? `${stats.oldestActive.company_name} • ${stats.oldestActive.position} • applied ${formatShortDate(stats.oldestActive.applied_at)}`
