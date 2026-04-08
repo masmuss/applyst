@@ -6,8 +6,7 @@ export function LandingFooter() {
             <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
                 <LandingBrand />
                 <p className="text-xs text-muted-foreground">
-                    © {new Date().getFullYear()} Applyst. Dibuat untuk para job
-                    seeker.
+                    © {new Date().getFullYear()} Applyst. Built for job seekers.
                 </p>
             </div>
         </footer>

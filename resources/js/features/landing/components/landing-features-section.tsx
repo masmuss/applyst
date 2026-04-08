@@ -7,11 +7,11 @@ export function LandingFeaturesSection() {
             <div className="mx-auto max-w-6xl px-6">
                 <div className="mb-12 text-center">
                     <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                        Satu tempat untuk semua lamaran
+                        One place for every application
                     </h2>
                     <p className="mt-3 text-muted-foreground">
-                        Dirancang simpel — bukan enterprise software yang bikin
-                        pusing.
+                        Built to stay simple, not another enterprise tool that
+                        makes everything harder.
                     </p>
                 </div>
 

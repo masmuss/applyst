@@ -40,10 +40,10 @@ export function LandingBrowserPreview() {
 
                     <div className="overflow-hidden rounded-lg border border-border/50">
                         <div className="grid grid-cols-[1.5fr_1.5fr_1fr_1fr] border-b border-border/50 bg-muted/30 px-4 py-2.5 text-xs font-medium text-muted-foreground">
-                            <span>Perusahaan</span>
-                            <span>Posisi</span>
+                            <span>Company</span>
+                            <span>Role</span>
                             <span>Status</span>
-                            <span>Tanggal</span>
+                            <span>Date</span>
                         </div>
                         {mockApplications.map((application, index) => (
                             <div
