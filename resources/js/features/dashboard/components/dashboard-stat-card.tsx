@@ -28,7 +28,7 @@ export function DashboardStatCard({
     supportingText: string;
 }) {
     return (
-        <Card className="border-sidebar-border/70 bg-linear-to-br from-background via-background to-muted/30 shadow-sm dark:border-sidebar-border">
+        <Card className="bg-linear-to-br from-background via-background to-muted dark:to-muted/10">
             <CardHeader>
                 <CardTitle>{title}</CardTitle>
                 <CardDescription>{description}</CardDescription>

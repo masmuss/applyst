@@ -1,19 +1,8 @@
 import { Link } from '@inertiajs/react';
+import { formatShortDate } from '@/features/dashboard/utils';
 import { JobApplicationStatusBadge } from '@/features/job-applications/components/job-application-status';
 import type { JobApplicationRecord } from '@/features/job-applications/types';
 import jobApplications from '@/routes/job-applications';
-
-function formatShortDate(value: string | null): string {
-    if (!value) {
-        return '-';
-    }
-
-    return new Intl.DateTimeFormat('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-    }).format(new Date(value));
-}
 
 export function RecentApplicationRow({
     application,
