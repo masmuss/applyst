@@ -1,10 +1,6 @@
 import { Link } from '@inertiajs/react';
 import AppLogo from '@/components/layout/app-logo';
-import {
-    mainNavItems,
-    utilityNavItems,
-} from '@/components/layout/app-navigation';
-import { NavFooter } from '@/components/layout/nav-footer';
+import { mainNavItems } from '@/components/layout/app-navigation';
 import { NavMain } from '@/components/layout/nav-main';
 import { NavUser } from '@/components/layout/nav-user';
 import {
@@ -38,7 +34,6 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={utilityNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>
