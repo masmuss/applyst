@@ -1,45 +1,27 @@
-import { featureCards } from '@/features/landing/landing-data';
-import { cn } from '@/lib/utils';
+import { BentoCard, BentoGrid, CARDS } from '@/components/ui/bento-grid';
+import { MagicBadge } from '@/components/ui/magic-badge';
+import { LandingReveal } from '@/features/landing/components/landing-reveal';
 
 export function LandingFeaturesSection() {
     return (
         <section className="py-20">
             <div className="mx-auto max-w-6xl px-6">
-                <div className="mb-12 text-center">
-                    <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                <LandingReveal className="mb-12 text-center" delay={80}>
+                    <MagicBadge title="Features" className="mb-5" />
+                    <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         One place for every application
                     </h2>
-                    <p className="mt-3 text-muted-foreground">
+                    <p className="mt-3 text-slate-400">
                         Built to stay simple, not another enterprise tool that
                         makes everything harder.
                     </p>
-                </div>
+                </LandingReveal>
 
-                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                    {featureCards.map((feature) => (
-                        <div
-                            key={feature.title}
-                            className="group rounded-xl border border-border/50 bg-card/30 p-5 transition-colors hover:bg-card/60"
-                        >
-                            <div
-                                className={cn(
-                                    'mb-3 flex h-9 w-9 items-center justify-center rounded-lg',
-                                    feature.bg,
-                                )}
-                            >
-                                <feature.icon
-                                    className={cn('h-4 w-4', feature.accent)}
-                                />
-                            </div>
-                            <h3 className="mb-1.5 text-sm font-semibold">
-                                {feature.title}
-                            </h3>
-                            <p className="text-sm leading-relaxed text-muted-foreground">
-                                {feature.desc}
-                            </p>
-                        </div>
+                <BentoGrid className="py-4">
+                    {CARDS.map((feature) => (
+                        <BentoCard key={feature.name} {...feature} />
                     ))}
-                </div>
+                </BentoGrid>
             </div>
         </section>
     );

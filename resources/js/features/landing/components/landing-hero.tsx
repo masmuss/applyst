@@ -3,6 +3,7 @@ import { ArrowRightIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LandingBrowserPreview } from '@/features/landing/components/landing-browser-preview';
+import { LandingReveal } from '@/features/landing/components/landing-reveal';
 import { login, register } from '@/routes';
 
 type Props = {
@@ -11,42 +12,67 @@ type Props = {
 
 export function LandingHero({ canRegister = true }: Props) {
     return (
-        <section className="relative mx-auto max-w-6xl px-6 pt-20 pb-16 text-center">
-            <Badge variant="outline" className="mb-4 gap-2 p-3">
-                <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500"></span>
-                </span>
-                Free for everyone
-            </Badge>
+        <section className="relative mx-auto max-w-6xl px-6 pt-20 pb-16 text-center md:pt-24 lg:pt-28">
+            <div className="landing-image-glow pointer-events-none absolute inset-x-0 top-20 -z-10 mx-auto h-48 w-full max-w-3xl rounded-full bg-primary/35 blur-[130px]" />
 
-            <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Where have you applied so far?{' '}
-                <span className="text-muted-foreground/50">
-                    You probably forgot.
-                </span>
-            </h1>
+            <LandingReveal>
+                <Badge
+                    variant="outline"
+                    className="mb-5 rounded-full border-primary/40 bg-white/5 p-3 text-slate-200"
+                >
+                    <span className="relative mr-2 flex h-1.5 w-1.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/90 opacity-75"></span>
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary"></span>
+                    </span>
+                    Manage applications smarter
+                    <ArrowRightIcon className="ml-1 h-3.5 w-3.5" />
+                </Badge>
+            </LandingReveal>
 
-            <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground">
-                Applyst helps you track, monitor, and analyze all your job
-                applications in one place, not in messy spreadsheets.
-            </p>
+            <LandingReveal delay={120}>
+                <h1 className="mx-auto max-w-4xl text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl md:text-6xl lg:text-7xl">
+                    Smart Job Search
+                    <span className="block bg-linear-to-r from-primary via-primary/80 to-fuchsia-400 bg-clip-text text-transparent">
+                        with Precision
+                    </span>
+                </h1>
+            </LandingReveal>
 
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button size="lg" className="gap-2" asChild>
-                    <Link href={register()}>
-                        Start free now
-                        <ArrowRightIcon className="h-4 w-4" />
-                    </Link>
-                </Button>
-                {canRegister && (
-                    <Button size="lg" variant="outline" asChild>
-                        <Link href={login()}>Already have an account</Link>
+            <LandingReveal delay={220}>
+                <p className="mx-auto mt-6 max-w-2xl text-base text-slate-300/90 sm:text-lg">
+                    Effortlessly track every role, monitor progress, and keep
+                    your application flow organized in one focused workspace.
+                </p>
+            </LandingReveal>
+
+            <LandingReveal delay={300}>
+                <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                    <Button
+                        size="lg"
+                        className="gap-2 bg-white text-slate-950 hover:bg-slate-100"
+                        asChild
+                    >
+                        <Link href={register()}>
+                            Start creating for free
+                            <ArrowRightIcon className="h-4 w-4" />
+                        </Link>
                     </Button>
-                )}
-            </div>
+                    {canRegister && (
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="border-white/20 bg-white/5 text-white hover:bg-white/10"
+                            asChild
+                        >
+                            <Link href={login()}>Already have an account</Link>
+                        </Button>
+                    )}
+                </div>
+            </LandingReveal>
 
-            <LandingBrowserPreview />
+            <LandingReveal delay={400}>
+                <LandingBrowserPreview />
+            </LandingReveal>
         </section>
     );
 }

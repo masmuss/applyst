@@ -214,3 +214,68 @@
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
 }
+
+@keyframes landing-fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes landing-image-glow {
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.45;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes border-beam {
+    100% {
+        offset-distance: 100%;
+    }
+}
+
+@layer utilities {
+    .landing-grid-bg {
+        background-color: #06080e;
+        background-image:
+            linear-gradient(
+                to right,
+                rgb(255 255 255 / 9%) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                rgb(255 255 255 / 9%) 1px,
+                transparent 1px
+            );
+        background-size: 40px 40px;
+    }
+
+    .landing-fade-overlay {
+        background: linear-gradient(
+            to bottom,
+            rgb(6 8 14 / 0%) 0%,
+            rgb(6 8 14 / 75%) 35%,
+            rgb(6 8 14) 100%
+        );
+    }
+
+    .landing-reveal {
+        animation: landing-fade-up 0.7s ease-out both;
+        animation-delay: var(--landing-delay, 0ms);
+    }
+
+    .landing-image-glow {
+        animation: landing-image-glow 7s ease-in-out infinite;
+    }
+}
