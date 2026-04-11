@@ -2,13 +2,64 @@ import {
     BarChart3Icon,
     BellIcon,
     BriefcaseIcon,
+    Building2Icon,
+    CheckCheckIcon,
     CalendarClockIcon,
     CheckCircleIcon,
     LayoutDashboardIcon,
+    SearchIcon,
     SearchXIcon,
     TrendingUpIcon,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+
+export const processSteps = [
+    {
+        icon: SearchIcon,
+        title: 'Track every submission',
+        desc: 'Save each role once and stop double-applying to the same position.',
+    },
+    {
+        icon: Building2Icon,
+        title: 'Monitor every stage',
+        desc: 'See where each company is in your pipeline from applied to offer.',
+    },
+    {
+        icon: CheckCheckIcon,
+        title: 'Follow up on time',
+        desc: 'Stay consistent with reminders so opportunities never go cold.',
+    },
+] as const satisfies Array<{
+    icon: LucideIcon;
+    title: string;
+    desc: string;
+}>;
+
+export const testimonials = [
+    {
+        name: 'Nadia Putri',
+        role: 'Frontend Engineer',
+        review: 'I moved from sticky notes to a clear pipeline. Applyst helped me focus on the right roles.',
+        rating: 5,
+    },
+    {
+        name: 'Arga Maulana',
+        role: 'Backend Developer',
+        review: 'The follow-up reminders are the most useful part. I finally reply on time and get more interviews.',
+        rating: 5,
+    },
+    {
+        name: 'Cindy Pratama',
+        role: 'Product Analyst',
+        review: 'The dashboard gives me a realistic view of my progress and which channels actually work.',
+        rating: 4,
+    },
+] as const satisfies Array<{
+    name: string;
+    role: string;
+    review: string;
+    rating: number;
+}>;
 
 export const statusConfig = {
     applied: {

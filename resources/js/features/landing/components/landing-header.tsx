@@ -17,7 +17,7 @@ export function LandingHeader({ canRegister = true }: Props) {
     };
 
     return (
-        <header className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-md">
+        <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#06080e]/30 backdrop-blur-md">
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
                 <LandingBrand />
 
@@ -28,11 +28,11 @@ export function LandingHeader({ canRegister = true }: Props) {
                         </Button>
                     ) : (
                         <>
-                            <Button variant="ghost" size="sm" asChild>
+                            <Button variant="ghost" asChild>
                                 <Link href={login()}>Log in</Link>
                             </Button>
                             {canRegister && (
-                                <Button size="sm" asChild>
+                                <Button asChild>
                                     <Link href={register()}>Get started</Link>
                                 </Button>
                             )}
