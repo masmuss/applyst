@@ -38,7 +38,7 @@ export const CARDS = [
                         Update progress without messy manual spreadsheets.
                     </CardDescription>
                 </CardHeader>
-                <CardContent className="-mt-4">
+                <CardContent className="-mt-4 space-y-2">
                     <Label>Position title</Label>
                     <Input
                         type="text"
@@ -193,9 +193,9 @@ const BentoCard = ({
     >
         <div>{background}</div>
         <div className="pointer-events-none z-10 flex flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
-            <Icon className="h-12 w-12 origin-left text-slate-600 transition-all duration-300 ease-in-out group-hover:scale-75" />
-            <h3 className="text-xl font-semibold text-slate-200">{name}</h3>
-            <p className="max-w-lg text-slate-400">{description}</p>
+            <Icon className="h-12 w-12 mb-3 opacity-80 origin-left transition-all duration-300 ease-in-out group-hover:scale-75" />
+            <h3 className="text-xl font-semibold">{name}</h3>
+            <p className="max-w-lg text-muted-foreground">{description}</p>
         </div>
 
         <div

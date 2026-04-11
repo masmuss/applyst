@@ -28,7 +28,7 @@ export default function Landing({
 
                 <LandingHeader canRegister={canRegister} />
                 <main className="relative z-10 pt-16">
-                    <LandingHero canRegister={canRegister} />
+                    <LandingHero />
                     <LandingProblemSection />
                     <LandingFeaturesSection />
                     <LandingCtaSection />

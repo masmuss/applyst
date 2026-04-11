@@ -4,13 +4,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LandingBrowserPreview } from '@/features/landing/components/landing-browser-preview';
 import { LandingReveal } from '@/features/landing/components/landing-reveal';
-import { login, register } from '@/routes';
+import { login } from '@/routes';
 
-type Props = {
-    canRegister?: boolean;
-};
-
-export function LandingHero({ canRegister = true }: Props) {
+export function LandingHero() {
     return (
         <section className="relative mx-auto max-w-6xl px-6 pt-20 pb-16 text-center md:pt-24 lg:pt-28">
             <div className="landing-image-glow pointer-events-none absolute inset-x-0 top-20 -z-10 mx-auto h-48 w-full max-w-3xl rounded-full bg-primary/35 blur-[130px]" />
@@ -47,26 +43,12 @@ export function LandingHero({ canRegister = true }: Props) {
 
             <LandingReveal delay={300}>
                 <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                    <Button
-                        size="lg"
-                        className="gap-2 bg-white text-slate-950 hover:bg-slate-100"
-                        asChild
-                    >
-                        <Link href={register()}>
-                            Start creating for free
+                    <Button size="lg" variant="secondary" asChild>
+                        <Link href={login()}>
+                            Start tracking for free
                             <ArrowRightIcon className="h-4 w-4" />
                         </Link>
                     </Button>
-                    {canRegister && (
-                        <Button
-                            size="lg"
-                            variant="outline"
-                            className="border-white/20 bg-white/5 text-white hover:bg-white/10"
-                            asChild
-                        >
-                            <Link href={login()}>Already have an account</Link>
-                        </Button>
-                    )}
                 </div>
             </LandingReveal>
 

@@ -7,7 +7,6 @@ import { register } from '@/routes';
 export function LandingCtaSection() {
     return (
         <section className="relative overflow-hidden border-t border-white/10 py-24">
-            <div className="pointer-events-none absolute inset-x-0 top-8 mx-auto h-48 w-104 rounded-full bg-primary/35 blur-[120px]" />
             <LandingReveal
                 className="relative mx-auto max-w-2xl px-6 text-center"
                 delay={120}
