@@ -6,8 +6,8 @@
         "build": "vite build",
         "build:ssr": "vite build && vite build --ssr",
         "dev": "vite",
-        "format": "prettier --write resources/ lefthook.yaml package.json package-lock.json README.md",
-        "format:check": "prettier --check resources/ lefthook.yaml package.json package-lock.json README.md",
+        "format": "prettier --write resources/ lefthook.yaml package.json package-lock.json components.json README.md",
+        "format:check": "prettier --check resources/ lefthook.yaml package.json package-lock.json components.json README.md",
         "lint": "eslint . --fix",
         "lint:check": "eslint .",
         "types:check": "tsc --noEmit"
@@ -31,6 +31,7 @@
         "typescript-eslint": "^8.23.0"
     },
     "dependencies": {
+        "@fontsource-variable/figtree": "^5.2.10",
         "@fontsource-variable/geist": "^5.2.8",
         "@headlessui/react": "^2.2.0",
         "@hugeicons/core-free-icons": "^4.1.1",
