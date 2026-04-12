@@ -25,7 +25,7 @@ export function LandingBrowserPreview() {
                             )}
                         />
                     ))}
-                    <div className="ml-3 flex h-5 max-w-full flex-1 items-center rounded-md bg-white/5 p-4 text-xs text-slate-400/80">
+                    <div className="ml-3 flex h-5 max-w-full flex-1 items-center rounded-md bg-white/5 p-4 text-xs text-slate-300">
                         app.applyst.id
                     </div>
                 </div>
@@ -43,7 +43,7 @@ export function LandingBrowserPreview() {
                                 <div className="mt-1 text-2xl font-bold text-slate-100">
                                     {stat.value}
                                 </div>
-                                <div className="text-xs text-slate-500">
+                                <div className="text-xs text-slate-400">
                                     {stat.sub}
                                 </div>
                             </div>
@@ -86,7 +86,7 @@ export function LandingBrowserPreview() {
                                             <div className="font-medium text-slate-100">
                                                 {application.company}
                                             </div>
-                                            <div className="text-xs text-slate-500">
+                                            <div className="text-xs text-slate-400">
                                                 {application.source}
                                             </div>
                                         </td>
@@ -119,7 +119,7 @@ export function LandingBrowserPreview() {
                                         </td>
                                         <td
                                             className={cn(
-                                                'px-4 py-3 text-xs text-slate-500',
+                                                'px-4 py-3 text-xs text-slate-400',
                                                 index <
                                                     mockApplications.length -
                                                         1 &&
