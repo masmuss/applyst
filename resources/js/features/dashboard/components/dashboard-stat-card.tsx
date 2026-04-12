@@ -5,6 +5,7 @@ import {
     CardAction,
     CardContent,
     CardDescription,
+    CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
@@ -51,16 +52,12 @@ export function DashboardStatCard({
                     </Tooltip>
                 </CardAction>
             </CardHeader>
-            <CardContent className="flex items-end justify-between gap-4">
-                <div className="space-y-1">
-                    <p className="text-3xl font-semibold tracking-tight">
-                        {value}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                        {supportingText}
-                    </p>
-                </div>
+            <CardContent className="text-3xl font-semibold tracking-tight">
+                {value}
             </CardContent>
+            <CardFooter className="text-sm text-muted-foreground">
+                {supportingText}
+            </CardFooter>
         </Card>
     );
 }

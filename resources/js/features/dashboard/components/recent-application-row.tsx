@@ -30,7 +30,7 @@ export function RecentApplicationRow({
                     status={application.status}
                     label={label}
                 />
-                <p className="text-xs text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                     Applied {formatShortDate(application.applied_at)}
                 </p>
             </div>
