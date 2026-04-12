@@ -95,6 +95,38 @@ The repository uses Lefthook for local checks.
 - `routes/` - Laravel routes
 - `tests/` - PHPUnit feature and unit tests
 
+## Screenshots
+
+### Landing Page
+
+![Landing Page](docs/screenshots/landing-page.png)
+
+First impression of applyst and its core value for job tracking.
+
+### Dashboard
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+Overview of key metrics, response rate, and recent progress.
+
+### Applications List
+
+![Applications List](docs/screenshots/applications-list.png)
+
+Centralized table to browse, filter, and monitor all applications.
+
+### Application Detail
+
+![Application Detail](docs/screenshots/application-detail.png)
+
+Detailed timeline and status history for each application.
+
+### Reminders
+
+![Reminders](docs/screenshots/reminders.png)
+
+Follow-up reminders to keep applications moving forward.
+
 ## Notes
 
 - The app name is configured as `applyst`.
