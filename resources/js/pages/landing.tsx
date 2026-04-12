@@ -13,7 +13,7 @@ export default function Landing({
 }) {
     return (
         <>
-            <Head title="Applyst">
+            <Head title="Home">
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
                     href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
@@ -28,7 +28,7 @@ export default function Landing({
 
                 <LandingHeader canRegister={canRegister} />
                 <main className="relative z-10 pt-16">
-                    <LandingHero canRegister={canRegister} />
+                    <LandingHero />
                     <LandingProblemSection />
                     <LandingFeaturesSection />
                     <LandingCtaSection />
