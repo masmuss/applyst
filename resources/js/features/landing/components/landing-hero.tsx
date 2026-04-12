@@ -43,7 +43,7 @@ export function LandingHero() {
 
             <LandingReveal delay={300}>
                 <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                    <Button size="lg" variant="secondary" asChild>
+                    <Button size="lg" asChild>
                         <Link href={login()}>
                             Start tracking for free
                             <ArrowRightIcon className="h-4 w-4" />

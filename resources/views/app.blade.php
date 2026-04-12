@@ -30,9 +30,15 @@
             }
         </style>
 
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        @php
+            $faviconIcoVersion = file_exists(public_path('favicon.ico')) ? filemtime(public_path('favicon.ico')) : time();
+            $faviconSvgVersion = file_exists(public_path('favicon.svg')) ? filemtime(public_path('favicon.svg')) : time();
+            $appleTouchIconVersion = file_exists(public_path('apple-touch-icon.png')) ? filemtime(public_path('apple-touch-icon.png')) : time();
+        @endphp
+
+        <link rel="icon" href="{{ asset('favicon.ico') }}?v={{ $faviconIcoVersion }}" sizes="any">
+        <link rel="icon" href="{{ asset('favicon.svg') }}?v={{ $faviconSvgVersion }}" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleTouchIconVersion }}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
