@@ -14,7 +14,7 @@ export function LandingHero() {
             <LandingReveal>
                 <Badge
                     variant="outline"
-                    className="mb-5 rounded-full border-primary/40 bg-white/5 p-3 text-slate-200"
+                    className="mb-5 rounded-full border-primary/40 bg-white/5 p-3 text-neutral-200"
                 >
                     <span className="relative mr-2 flex h-1.5 w-1.5">
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/90 opacity-75"></span>
@@ -35,7 +35,7 @@ export function LandingHero() {
             </LandingReveal>
 
             <LandingReveal delay={220}>
-                <p className="mx-auto mt-6 max-w-2xl text-base text-slate-300/90 sm:text-lg">
+                <p className="mx-auto mt-6 max-w-2xl text-base text-neutral-300/90 sm:text-lg">
                     Effortlessly track every role, monitor progress, and keep
                     your application flow organized in one focused workspace.
                 </p>

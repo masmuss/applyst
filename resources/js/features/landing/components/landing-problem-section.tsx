@@ -13,7 +13,7 @@ export function LandingProblemSection() {
                     <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">
                         Effortless application management in 3 steps
                     </h3>
-                    <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-400 sm:text-base">
+                    <p className="mx-auto mt-3 max-w-2xl text-sm text-neutral-400 sm:text-base">
                         A familiar structure from modern landing pages, adapted
                         to Applyst for job seekers.
                     </p>
@@ -35,7 +35,7 @@ export function LandingProblemSection() {
                                     <h4 className="mb-2 text-sm font-semibold text-white">
                                         {step.title}
                                     </h4>
-                                    <p className="text-sm leading-relaxed text-slate-400">
+                                    <p className="text-sm leading-relaxed text-neutral-400">
                                         {step.desc}
                                     </p>
                                 </CardContent>
@@ -44,7 +44,7 @@ export function LandingProblemSection() {
                     ))}
                 </div>
 
-                <h3 className="mt-16 mb-6 text-center text-lg font-medium tracking-widest text-slate-300 uppercase">
+                <h3 className="mt-16 mb-6 text-center text-lg font-medium tracking-widest text-neutral-300 uppercase">
                     Ever experienced this?
                 </h3>
 
@@ -57,12 +57,12 @@ export function LandingProblemSection() {
                             <MagicCard className="h-full bg-black/35">
                                 <CardContent className="p-0">
                                     <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-white/8">
-                                        <item.icon className="h-4 w-4 text-slate-300" />
+                                        <item.icon className="h-4 w-4 text-neutral-300" />
                                     </div>
                                     <h3 className="mb-1.5 font-semibold text-white">
                                         {item.title}
                                     </h3>
-                                    <p className="text-sm leading-relaxed text-slate-400">
+                                    <p className="text-sm leading-relaxed text-neutral-400">
                                         {item.desc}
                                     </p>
                                 </CardContent>

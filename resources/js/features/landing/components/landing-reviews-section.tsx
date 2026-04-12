@@ -21,7 +21,7 @@ export function LandingReviewsSection() {
                     <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         What users say about Applyst
                     </h2>
-                    <p className="mt-3 text-slate-400">
+                    <p className="mt-3 text-neutral-400">
                         A testimonial block inspired by Linkify style, tuned to
                         Applyst&apos;s visual system.
                     </p>
@@ -38,12 +38,12 @@ export function LandingReviewsSection() {
                                     <CardTitle className="text-base text-white">
                                         {testimonial.name}
                                     </CardTitle>
-                                    <CardDescription className="text-slate-400">
+                                    <CardDescription className="text-neutral-400">
                                         {testimonial.role}
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-sm leading-relaxed text-slate-400">
+                                    <p className="text-sm leading-relaxed text-neutral-400">
                                         {testimonial.review}
                                     </p>
                                 </CardContent>
