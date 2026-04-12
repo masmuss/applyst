@@ -8,11 +8,11 @@ export function LandingBrowserPreviewStats() {
                     key={stat.label}
                     className="rounded-lg border border-white/10 bg-white/5 p-3 text-left"
                 >
-                    <div className="text-xs text-slate-400">{stat.label}</div>
-                    <div className="mt-1 text-2xl font-bold text-slate-100">
+                    <div className="text-xs text-neutral-400">{stat.label}</div>
+                    <div className="mt-1 text-2xl font-bold text-neutral-100">
                         {stat.value}
                     </div>
-                    <div className="text-xs text-slate-400">{stat.sub}</div>
+                    <div className="text-xs text-neutral-400">{stat.sub}</div>
                 </div>
             ))}
         </div>

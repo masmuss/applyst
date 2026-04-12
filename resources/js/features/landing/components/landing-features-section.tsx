@@ -11,7 +11,7 @@ export function LandingFeaturesSection() {
                     <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         One place for every application
                     </h2>
-                    <p className="mt-3 text-slate-400">
+                    <p className="mt-3 text-neutral-400">
                         Built to stay simple, not another enterprise tool that
                         makes everything harder.
                     </p>

@@ -6,7 +6,7 @@ export function LandingBrowserPreviewTable() {
     return (
         <div className="overflow-hidden rounded-lg border border-white/10">
             <table className="w-full border-separate border-spacing-0 text-sm">
-                <thead className="bg-white/5 text-xs font-medium text-slate-400">
+                <thead className="bg-white/5 text-xs font-medium text-neutral-400">
                     <tr>
                         <th className="px-4 py-2.5 text-left font-medium">
                             Company
@@ -48,14 +48,14 @@ function LandingBrowserPreviewTableRow({
     return (
         <tr className="align-middle">
             <td className={cn('px-4 py-3 text-left', rowBorderClass)}>
-                <div className="font-medium text-slate-100">
+                <div className="font-medium text-neutral-100">
                     {application.company}
                 </div>
-                <div className="text-xs text-slate-400">
+                <div className="text-xs text-neutral-400">
                     {application.source}
                 </div>
             </td>
-            <td className={cn('px-4 py-3 text-slate-300', rowBorderClass)}>
+            <td className={cn('px-4 py-3 text-neutral-300', rowBorderClass)}>
                 {application.position}
             </td>
             <td className={cn('px-4 py-3', rowBorderClass)}>
@@ -66,7 +66,7 @@ function LandingBrowserPreviewTableRow({
             </td>
             <td
                 className={cn(
-                    'px-4 py-3 text-xs text-slate-400',
+                    'px-4 py-3 text-xs text-neutral-400',
                     rowBorderClass,
                 )}
             >

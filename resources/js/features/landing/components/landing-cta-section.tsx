@@ -14,14 +14,14 @@ export function LandingCtaSection() {
                 <h2 className="text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl">
                     Step into the future of job application tracking
                 </h2>
-                <p className="mt-4 text-slate-400">
+                <p className="mt-4 text-neutral-400">
                     Experience a focused workflow that keeps your applications,
                     follow-ups, and outcomes organized.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center sm:flex-row">
                     <Button
                         size="lg"
-                        className="gap-2 bg-white text-slate-950 hover:bg-slate-100"
+                        className="gap-2 bg-white text-neutral-950 hover:bg-neutral-100"
                         asChild
                     >
                         <Link href={register()}>

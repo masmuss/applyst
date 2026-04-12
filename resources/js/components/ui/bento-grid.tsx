@@ -99,7 +99,7 @@ export const CARDS = [
                     </div>
                 </div>
 
-                <div className="mt-5 grid grid-cols-3 gap-2 text-xs text-slate-300">
+                <div className="mt-5 grid grid-cols-3 gap-2 text-xs text-neutral-300">
                     <div className="rounded-md border border-white/10 bg-black/40 p-2">
                         Response 41%
                     </div>
@@ -112,7 +112,7 @@ export const CARDS = [
                 </div>
 
                 <div className="mt-4 rounded-lg border border-white/10 bg-black/30 p-3">
-                    <div className="mb-2 flex items-center justify-between text-[11px] text-slate-400">
+                    <div className="mb-2 flex items-center justify-between text-[11px] text-neutral-400">
                         <span>Weekly Trend</span>
                         <span>+12%</span>
                     </div>

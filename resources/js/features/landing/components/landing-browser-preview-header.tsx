@@ -15,7 +15,7 @@ export function LandingBrowserPreviewHeader() {
                     className={cn('h-2.5 w-2.5 rounded-full', color)}
                 />
             ))}
-            <div className="ml-3 flex h-5 max-w-full flex-1 items-center rounded-md bg-white/5 p-4 text-xs text-slate-300">
+            <div className="ml-3 flex h-5 max-w-full flex-1 items-center rounded-md bg-white/5 p-4 text-xs text-neutral-300">
                 app.applyst.id
             </div>
         </div>
