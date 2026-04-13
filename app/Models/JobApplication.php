@@ -60,7 +60,7 @@ class JobApplication extends Model
 
     public function statusLogs(): HasMany
     {
-        return $this->hasMany(ApplicationStatusLog::class)->latest('created_at');
+        return $this->hasMany(ApplicationStatusLog::class);
     }
 
     public function reminders(): HasMany
