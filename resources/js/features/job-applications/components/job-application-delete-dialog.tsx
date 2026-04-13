@@ -1,5 +1,6 @@
+import { Trash2 } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { router } from '@inertiajs/react';
-import { Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { toast } from 'sonner';
@@ -48,7 +49,7 @@ export function JobApplicationDeleteDialog({ jobApplication, trigger }: Props) {
             <AlertDialogTrigger asChild>
                 {trigger ?? (
                     <Button variant="destructive" size="sm">
-                        <Trash2 data-icon="inline-start" />
+                        <HugeiconsIcon icon={Trash2} />
                         Delete
                     </Button>
                 )}

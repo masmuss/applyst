@@ -1,5 +1,6 @@
+import { Menu01Icon, Search01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Link, usePage } from '@inertiajs/react';
-import { Menu, Search } from 'lucide-react';
 import AppLogo from '@/components/layout/app-logo';
 import AppLogoIcon from '@/components/layout/app-logo-icon';
 import { mainNavItems } from '@/components/layout/app-navigation';
@@ -54,7 +55,10 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                     size="icon"
                                     className="mr-2 h-8.5 w-8.5"
                                 >
-                                    <Menu className="h-5 w-5" />
+                                    <HugeiconsIcon
+                                        icon={Menu01Icon}
+                                        className="h-5 w-5"
+                                    />
                                 </Button>
                             </SheetTrigger>
                             <SheetContent
@@ -134,7 +138,10 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                 size="icon"
                                 className="group h-9 w-9 cursor-pointer"
                             >
-                                <Search className="size-5! opacity-80 group-hover:opacity-100" />
+                                <HugeiconsIcon
+                                    icon={Search01Icon}
+                                    className="size-5! opacity-80 group-hover:opacity-100"
+                                />
                             </Button>
                         </div>
                         <DropdownMenu>

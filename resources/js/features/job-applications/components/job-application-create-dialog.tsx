@@ -1,4 +1,5 @@
-import { Plus } from 'lucide-react';
+import { Plus } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -23,7 +24,7 @@ export function JobApplicationCreateDialog({ statuses }: Props) {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button className="w-full md:w-auto">
-                    <Plus className="h-4 w-4" />
+                    <HugeiconsIcon icon={Plus} />
                     Add new application
                 </Button>
             </DialogTrigger>

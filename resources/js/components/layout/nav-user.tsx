@@ -1,5 +1,6 @@
+import { ChevronsUpDown } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { usePage } from '@inertiajs/react';
-import { ChevronsUpDown } from 'lucide-react';
 import { UserInfo } from '@/components/layout/user-info';
 import { UserMenuContent } from '@/components/layout/user-menu-content';
 import {
@@ -35,7 +36,10 @@ export function NavUser() {
                             data-test="sidebar-menu-button"
                         >
                             <UserInfo user={auth.user} />
-                            <ChevronsUpDown className="ml-auto size-4" />
+                            <HugeiconsIcon
+                                icon={ChevronsUpDown}
+                                className="ml-auto size-4"
+                            />
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent

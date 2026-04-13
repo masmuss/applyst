@@ -1,5 +1,6 @@
+import { ArrowRight02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Link } from '@inertiajs/react';
-import { ArrowRightIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LandingBrowserPreview } from '@/features/landing/components/landing-browser-preview';
@@ -21,7 +22,10 @@ export function LandingHero() {
                         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary"></span>
                     </span>
                     Manage applications smarter
-                    <ArrowRightIcon className="ml-1 h-3.5 w-3.5" />
+                    <HugeiconsIcon
+                        icon={ArrowRight02Icon}
+                        className="ml-1 h-3.5 w-3.5"
+                    />
                 </Badge>
             </LandingReveal>
 
@@ -46,7 +50,10 @@ export function LandingHero() {
                     <Button size="lg" asChild>
                         <Link href={login()}>
                             Start tracking for free
-                            <ArrowRightIcon className="h-4 w-4" />
+                            <HugeiconsIcon
+                                icon={ArrowRight02Icon}
+                                className="h-4 w-4"
+                            />
                         </Link>
                     </Button>
                 </div>

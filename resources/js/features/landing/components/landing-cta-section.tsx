@@ -1,5 +1,6 @@
+import { ArrowRight02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Link } from '@inertiajs/react';
-import { ArrowRightIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LandingReveal } from '@/features/landing/components/landing-reveal';
 import { register } from '@/routes';
@@ -26,7 +27,10 @@ export function LandingCtaSection() {
                     >
                         <Link href={register()}>
                             Get started for free
-                            <ArrowRightIcon className="h-4 w-4" />
+                            <HugeiconsIcon
+                                icon={ArrowRight02Icon}
+                                className="h-4 w-4"
+                            />
                         </Link>
                     </Button>
                 </div>

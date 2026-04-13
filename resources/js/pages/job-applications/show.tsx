@@ -1,5 +1,6 @@
+import { ArrowLeft, ExternalLink } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Head, Link } from '@inertiajs/react';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
 import Heading from '@/components/shared/heading';
 import { Button } from '@/components/ui/button';
 import {
@@ -9,7 +10,6 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { Icon } from '@/components/ui/icon';
 import { Separator } from '@/components/ui/separator';
 import {
     getJobApplicationStatusMeta,
@@ -85,7 +85,7 @@ export default function JobApplicationsShow({
                     <div className="flex flex-wrap gap-2">
                         <Button asChild variant="outline" size="sm">
                             <Link href={jobApplications.index().url}>
-                                <ArrowLeft />
+                                <HugeiconsIcon icon={ArrowLeft} />
                                 Back to list
                             </Link>
                         </Button>
@@ -98,7 +98,7 @@ export default function JobApplicationsShow({
                                     rel="noreferrer"
                                 >
                                     Open posting
-                                    <ExternalLink />
+                                    <HugeiconsIcon icon={ExternalLink} />
                                 </a>
                             </Button>
                         ) : null}
@@ -173,8 +173,8 @@ export default function JobApplicationsShow({
                                             ) : null}
 
                                             <span className="absolute top-1 left-0 flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground">
-                                                <Icon
-                                                    iconNode={statusMeta.icon}
+                                                <HugeiconsIcon
+                                                    icon={statusMeta.icon}
                                                     className="size-4"
                                                 />
                                             </span>

@@ -1,5 +1,11 @@
+import {
+    ArrowDown,
+    ArrowUp,
+    ChevronsUpDown,
+    EyeOff,
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import type { Column } from '@tanstack/react-table';
-import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -39,11 +45,11 @@ export function DataTableColumnHeader<TData, TValue>({
                     >
                         <span>{title}</span>
                         {column.getIsSorted() === 'desc' ? (
-                            <ArrowDown />
+                            <HugeiconsIcon icon={ArrowDown} />
                         ) : column.getIsSorted() === 'asc' ? (
-                            <ArrowUp />
+                            <HugeiconsIcon icon={ArrowUp} />
                         ) : (
-                            <ChevronsUpDown />
+                            <HugeiconsIcon icon={ChevronsUpDown} />
                         )}
                     </Button>
                 </DropdownMenuTrigger>
@@ -51,20 +57,20 @@ export function DataTableColumnHeader<TData, TValue>({
                     <DropdownMenuItem
                         onClick={() => column.toggleSorting(false)}
                     >
-                        <ArrowUp />
+                        <HugeiconsIcon icon={ArrowUp} />
                         Asc
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={() => column.toggleSorting(true)}
                     >
-                        <ArrowDown />
+                        <HugeiconsIcon icon={ArrowDown} />
                         Desc
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                         onClick={() => column.toggleVisibility(false)}
                     >
-                        <EyeOff />
+                        <HugeiconsIcon icon={EyeOff} />
                         Hide
                     </DropdownMenuItem>
                 </DropdownMenuContent>

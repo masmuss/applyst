@@ -1,4 +1,11 @@
-import { Ban, CheckCircle, Layers, Loader } from 'lucide-react';
+import {
+    UnavailableIcon,
+    CheckCircle,
+    Layers,
+    Loader,
+} from '@hugeicons/core-free-icons';
+import type { IconSvgElement } from '@hugeicons/react';
+import { HugeiconsIcon } from '@hugeicons/react';
 import {
     Card,
     CardContent,
@@ -16,7 +23,7 @@ const statusCardMeta: Array<{
     key: keyof JobApplicationsSummary['statuses'] | 'total';
     label: string;
     description: string;
-    icon: React.ElementType;
+    icon: IconSvgElement;
 }> = [
     {
         key: 'total',
@@ -40,7 +47,7 @@ const statusCardMeta: Array<{
         key: 'rejected',
         label: 'Rejected',
         description: 'Applications that have been closed out.',
-        icon: Ban,
+        icon: UnavailableIcon,
     },
 ];
 
@@ -57,7 +64,10 @@ export function JobApplicationsOverview({ summary }: Props) {
                     <Card key={card.key}>
                         <CardHeader className="flex items-center justify-between gap-3">
                             <CardTitle className="flex items-center gap-2">
-                                <card.icon className="h-4 w-4" />
+                                <HugeiconsIcon
+                                    icon={card.icon}
+                                    className="size-4"
+                                />
                                 {card.label}
                             </CardTitle>
                         </CardHeader>

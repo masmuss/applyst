@@ -3,7 +3,8 @@ import {
     ChevronRight,
     ChevronsLeft,
     ChevronsRight,
-} from 'lucide-react';
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -81,7 +82,7 @@ export function DataTablePagination({
                         disabled={isFirstPage}
                     >
                         <span className="sr-only">Go to first page</span>
-                        <ChevronsLeft />
+                        <HugeiconsIcon icon={ChevronsLeft} />
                     </Button>
                     <Button
                         variant="outline"
@@ -91,7 +92,7 @@ export function DataTablePagination({
                         disabled={isFirstPage}
                     >
                         <span className="sr-only">Go to previous page</span>
-                        <ChevronLeft />
+                        <HugeiconsIcon icon={ChevronLeft} />
                     </Button>
                     <Button
                         variant="outline"
@@ -101,7 +102,7 @@ export function DataTablePagination({
                         disabled={isLastPage}
                     >
                         <span className="sr-only">Go to next page</span>
-                        <ChevronRight />
+                        <HugeiconsIcon icon={ChevronRight} />
                     </Button>
                     <Button
                         variant="outline"
@@ -111,7 +112,7 @@ export function DataTablePagination({
                         disabled={isLastPage}
                     >
                         <span className="sr-only">Go to last page</span>
-                        <ChevronsRight />
+                        <HugeiconsIcon icon={ChevronsRight} />
                     </Button>
                 </div>
             </div>

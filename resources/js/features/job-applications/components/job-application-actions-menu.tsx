@@ -1,5 +1,6 @@
+import { Ellipsis, Eye, Pencil, Trash2 } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Link } from '@inertiajs/react';
-import { Ellipsis, Eye, Pencil, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
@@ -31,7 +32,7 @@ export function JobApplicationActionsMenu({
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon-sm">
-                    <Ellipsis />
+                    <HugeiconsIcon icon={Ellipsis} />
                     <span className="sr-only">Open actions</span>
                 </Button>
             </DropdownMenuTrigger>
@@ -46,7 +47,7 @@ export function JobApplicationActionsMenu({
                                 }
                                 className="block w-full cursor-pointer"
                             >
-                                <Eye />
+                                <HugeiconsIcon icon={Eye} />
                                 View
                             </Link>
                         </DropdownMenuItem>
@@ -64,7 +65,7 @@ export function JobApplicationActionsMenu({
                                 event.preventDefault();
                             }}
                         >
-                            <Pencil />
+                            <HugeiconsIcon icon={Pencil} />
                             Edit
                         </DropdownMenuItem>
                     }
@@ -79,7 +80,7 @@ export function JobApplicationActionsMenu({
                                 event.preventDefault();
                             }}
                         >
-                            <Trash2 />
+                            <HugeiconsIcon icon={Trash2} />
                             Delete
                         </DropdownMenuItem>
                     }
