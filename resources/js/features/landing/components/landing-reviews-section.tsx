@@ -1,4 +1,5 @@
-import { StarIcon } from 'lucide-react';
+import { StarIcon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import {
     Card,
     CardContent,
@@ -51,8 +52,9 @@ export function LandingReviewsSection() {
                                     {Array.from(
                                         { length: testimonial.rating },
                                         (_, index) => (
-                                            <StarIcon
+                                            <HugeiconsIcon
                                                 key={index}
+                                                icon={StarIcon}
                                                 className="h-4 w-4 fill-primary text-primary"
                                             />
                                         ),

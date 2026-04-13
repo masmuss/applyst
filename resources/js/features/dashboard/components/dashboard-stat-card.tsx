@@ -1,4 +1,5 @@
-import { CircleHelp } from 'lucide-react';
+import { HelpCircleIcon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -43,7 +44,10 @@ export function DashboardStatCard({
                                 className="rounded-full"
                             >
                                 <span className="sr-only">More details</span>
-                                <CircleHelp className="size-4" />
+                                <HugeiconsIcon
+                                    icon={HelpCircleIcon}
+                                    className="size-4"
+                                />
                             </Button>
                         </TooltipTrigger>
                         <TooltipContent>

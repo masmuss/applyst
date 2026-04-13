@@ -1,6 +1,7 @@
 import { Transition } from '@headlessui/react';
+import { ShieldCheck } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Form, Head } from '@inertiajs/react';
-import { ShieldCheck } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import SecurityController from '@/actions/App/Http/Controllers/Settings/SecurityController';
 import Heading from '@/components/shared/heading';
@@ -211,7 +212,7 @@ export default function Security({
                                     <Button
                                         onClick={() => setShowSetupModal(true)}
                                     >
-                                        <ShieldCheck />
+                                        <HugeiconsIcon icon={ShieldCheck} />
                                         Continue setup
                                     </Button>
                                 ) : (

@@ -1,5 +1,6 @@
+import { ArrowUpRight } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Link } from '@inertiajs/react';
-import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -31,7 +32,10 @@ export function RecentApplicationsCard({
                     <Button asChild variant="outline" size="sm">
                         <Link href={jobApplications.index().url}>
                             View all
-                            <ArrowUpRight />
+                            <HugeiconsIcon
+                                icon={ArrowUpRight}
+                                className="h-4 w-4"
+                            />
                         </Link>
                     </Button>
                 </CardAction>

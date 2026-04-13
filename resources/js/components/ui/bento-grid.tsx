@@ -1,11 +1,14 @@
 import { Link } from '@inertiajs/react';
 import {
-    ArrowRightIcon,
-    BellIcon,
-    ChartLineIcon,
-    SearchIcon,
-    WorkflowIcon,
-} from 'lucide-react';
+    ArrowRight,
+    ArrowRight02Icon,
+    BellRing,
+    ChartLine,
+    Search,
+    Workflow,
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
+import type { IconSvgElement } from '@hugeicons/react';
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
@@ -23,7 +26,7 @@ import { Label } from '@/components/ui/label';
 
 export const CARDS = [
     {
-        Icon: WorkflowIcon,
+        Icon: Workflow,
         name: 'Application Pipeline',
         description:
             'Track every stage from Applied to Offer in one clear hiring flow.',
@@ -50,7 +53,7 @@ export const CARDS = [
         ),
     },
     {
-        Icon: SearchIcon,
+        Icon: Search,
         name: 'Smart Search & Filter',
         description:
             'Find companies, roles, and sources instantly with smart filters.',
@@ -78,7 +81,7 @@ export const CARDS = [
         ),
     },
     {
-        Icon: ChartLineIcon,
+        Icon: ChartLine,
         name: 'Progress Insights',
         description:
             'Understand response rates and top-performing channels at a glance.',
@@ -130,7 +133,7 @@ export const CARDS = [
         ),
     },
     {
-        Icon: BellIcon,
+        Icon: BellRing,
         name: 'Follow-up Reminder',
         description:
             'Schedule follow-ups so opportunities never go cold or get missed.',
@@ -178,7 +181,7 @@ const BentoCard = ({
     name: string;
     className: string;
     background: ReactNode;
-    Icon: React.ComponentType<{ className?: string }>;
+    Icon: IconSvgElement;
     description: string;
     href: string;
     cta: string;
@@ -193,7 +196,10 @@ const BentoCard = ({
     >
         <div>{background}</div>
         <div className="pointer-events-none z-10 flex flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
-            <Icon className="h-12 w-12 mb-3 opacity-80 origin-left transition-all duration-300 ease-in-out group-hover:scale-75" />
+            <HugeiconsIcon
+                icon={Icon}
+                className="h-12 w-12 mb-3 opacity-80 origin-left transition-all duration-300 ease-in-out group-hover:scale-75"
+            />
             <h3 className="text-xl font-semibold">{name}</h3>
             <p className="max-w-lg text-muted-foreground">{description}</p>
         </div>
@@ -213,7 +219,7 @@ const BentoCard = ({
                 })}
             >
                 {cta}
-                <ArrowRightIcon className="ml-2 h-4 w-4" />
+                <HugeiconsIcon icon={ArrowRight02Icon} className="ml-1 h-4 w-4" />
             </Link>
         </div>
         <div className="pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-black/3 group-hover:dark:bg-neutral-800/10" />

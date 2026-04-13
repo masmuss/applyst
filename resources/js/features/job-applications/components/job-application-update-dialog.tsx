@@ -1,5 +1,6 @@
+import { Pencil } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Form } from '@inertiajs/react';
-import { Pencil } from 'lucide-react';
 import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { toast } from 'sonner';
@@ -42,7 +43,7 @@ export function JobApplicationUpdateDialog({
             <DialogTrigger asChild>
                 {trigger ?? (
                     <Button variant="outline" size="sm">
-                        <Pencil data-icon="inline-start" />
+                        <HugeiconsIcon icon={Pencil} data-icon="inline-start" />
                         Edit
                     </Button>
                 )}

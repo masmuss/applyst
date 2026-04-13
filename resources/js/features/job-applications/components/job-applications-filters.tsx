@@ -1,4 +1,5 @@
-import { SearchIcon } from 'lucide-react';
+import { Search } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import { Button } from '@/components/ui/button';
@@ -110,7 +111,7 @@ export function JobApplicationsFilters({ filters, statuses }: Props) {
                                 placeholder="Company or role"
                             />
                             <InputGroupAddon>
-                                <SearchIcon />
+                                <HugeiconsIcon icon={Search} />
                             </InputGroupAddon>
                         </InputGroup>
                     </div>

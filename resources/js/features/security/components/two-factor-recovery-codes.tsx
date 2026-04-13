@@ -1,5 +1,11 @@
+import {
+    Eye,
+    EyeOff,
+    LockKeyhole,
+    RefreshCw,
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Form } from '@inertiajs/react';
-import { Eye, EyeOff, LockKeyhole, RefreshCw } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import AlertError from '@/components/shared/alert-error';
 import { Button } from '@/components/ui/button';
@@ -56,7 +62,11 @@ export default function TwoFactorRecoveryCodes({
         <Card>
             <CardHeader>
                 <CardTitle className="flex gap-3">
-                    <LockKeyhole className="size-4" aria-hidden="true" />
+                    <HugeiconsIcon
+                        icon={LockKeyhole}
+                        className="size-4"
+                        aria-hidden="true"
+                    />
                     2FA recovery codes
                 </CardTitle>
                 <CardDescription>
@@ -72,7 +82,8 @@ export default function TwoFactorRecoveryCodes({
                         aria-expanded={codesAreVisible}
                         aria-controls="recovery-codes-section"
                     >
-                        <RecoveryCodeIconComponent
+                        <HugeiconsIcon
+                            icon={RecoveryCodeIconComponent}
                             className="size-4"
                             aria-hidden="true"
                         />
@@ -92,7 +103,8 @@ export default function TwoFactorRecoveryCodes({
                                     disabled={processing}
                                     aria-describedby="regenerate-warning"
                                 >
-                                    <RefreshCw /> Regenerate codes
+                                    <HugeiconsIcon icon={RefreshCw} />
+                                    Regenerate codes
                                 </Button>
                             )}
                         </Form>

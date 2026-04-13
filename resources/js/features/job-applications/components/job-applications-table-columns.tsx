@@ -1,6 +1,7 @@
+import { ExternalLink, Eye } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Link } from '@inertiajs/react';
 import type { ColumnDef } from '@tanstack/react-table';
-import { ExternalLink, Eye } from 'lucide-react';
 import { DataTableColumnHeader } from '@/components/shared/data-table/data-table-column-header';
 import { Button } from '@/components/ui/button';
 import { JobApplicationActionsMenu } from '@/features/job-applications/components/job-application-actions-menu';
@@ -83,7 +84,10 @@ export function defineJobApplicationsTableColumns(
                             rel="noreferrer"
                         >
                             Open
-                            <ExternalLink />
+                            <HugeiconsIcon
+                                icon={ExternalLink}
+                                className="size-4"
+                            />
                         </a>
                     </Button>
                 ) : (
@@ -100,7 +104,7 @@ export function defineJobApplicationsTableColumns(
                             <Link
                                 href={jobApplications.show(row.original.id).url}
                             >
-                                <Eye />
+                                <HugeiconsIcon icon={Eye} className="size-4" />
                                 View
                             </Link>
                         </Button>

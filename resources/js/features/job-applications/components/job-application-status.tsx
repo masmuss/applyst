@@ -4,10 +4,10 @@ import {
     ClipboardCheck,
     HandCoins,
     MessagesSquare,
-} from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+} from '@hugeicons/core-free-icons';
+import type { IconSvgElement } from '@hugeicons/react';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Badge } from '@/components/ui/badge';
-import { Icon } from '@/components/ui/icon';
 import { SelectGroup, SelectItem } from '@/components/ui/select';
 import type {
     JobApplicationStatus,
@@ -15,7 +15,7 @@ import type {
 } from '@/features/job-applications/types';
 
 type JobApplicationStatusMeta = {
-    icon: LucideIcon;
+    icon: IconSvgElement;
     badgeVariant: 'default' | 'secondary' | 'destructive' | 'outline';
 };
 
@@ -61,7 +61,7 @@ export function JobApplicationStatusBadge({
 
     return (
         <Badge variant={meta.badgeVariant}>
-            <Icon iconNode={meta.icon} />
+            <HugeiconsIcon icon={meta.icon} className="size-4" />
             {label}
         </Badge>
     );
@@ -94,8 +94,8 @@ export function JobApplicationStatusSelectOptions({
                     <SelectItem key={value} value={value}>
                         <span className="flex items-center gap-2">
                             <span className="size-4 shrink-0">
-                                <Icon
-                                    iconNode={meta.icon}
+                                <HugeiconsIcon
+                                    icon={meta.icon}
                                     className="size-full"
                                 />
                             </span>

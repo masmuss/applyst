@@ -1,6 +1,7 @@
+import { Check, Copy, ScanLine } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Form } from '@inertiajs/react';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
-import { Check, Copy, ScanLine } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import AlertError from '@/components/shared/alert-error';
 import InputError from '@/components/shared/input-error';
@@ -43,7 +44,10 @@ function GridScanIcon() {
                         />
                     ))}
                 </div>
-                <ScanLine className="relative z-20 size-6 text-foreground" />
+                <HugeiconsIcon
+                    icon={ScanLine}
+                    className="relative z-20 size-6 text-foreground"
+                />
             </div>
         </div>
     );
@@ -126,7 +130,10 @@ function TwoFactorSetupStep({
                                         onClick={() => copy(manualSetupKey)}
                                         className="border-l border-border px-3 hover:bg-muted"
                                     >
-                                        <IconComponent className="w-4" />
+                                        <HugeiconsIcon
+                                            icon={IconComponent}
+                                            className="w-4"
+                                        />
                                     </button>
                                 </>
                             )}
