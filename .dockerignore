@@ -1,0 +1,56 @@
+# Node.js dependencies and logs
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Laravel dependencies and sensitive files
+vendor/
+.env
+.env.*
+public/hot
+storage/app/*
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/testing/*
+storage/framework/views/*
+bootstrap/cache/*.php
+bootstrap/cache/*.json
+
+# Git and IDE files
+.git/
+.gitignore
+.gitattributes
+.idea/
+.vscode/
+
+# Docker-related files
+docker-compose.yml
+
+# Documentation and tests
+docs/
+tests/
+*.md
+
+# Configuration files for local development
+.editorconfig
+.prettierrc
+.prettierignore
+.phpunit.*
+lefthook.yaml
+phpunit.xml
+pint.json
+skills-lock.json
+
+# Temporary and cache files
+.agents/
+.gemini/
+.github/
+*.log
+*.cache
+.phpunit.result.cache
+.DS_Store
+
+# Build artifacts generated locally
+public/build
