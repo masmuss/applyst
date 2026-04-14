@@ -68,6 +68,8 @@ RUN chmod +x /app/scripts/octane-entrypoint.sh
 EXPOSE 8000
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
-    CMD curl -f http://localhost:8000 || exit 1
+    CMD curl -fsS http://localhost:8000/up || exit 1
+
+USER www-data
 
 ENTRYPOINT ["/app/scripts/octane-entrypoint.sh"]
