@@ -1,11 +1,37 @@
-FROM dunglas/frankenphp:php8.5
+FROM dunglas/frankenphp:php8.5 AS build
 WORKDIR /app
 
-# install Node.js for asset build (Wayfinder invokes php artisan during vite build)
+# install PHP extensions and Node.js for build tooling
+RUN install-php-extensions \
+    pdo_mysql \
+    gd \
+    intl \
+    zip \
+    opcache \
+    pcntl \
+    redis
 RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm && \
     rm -rf /var/lib/apt/lists/*
 
-# install PHP extensions needed for Laravel
+# copy source code
+COPY . .
+
+# install composer and production dependencies
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer install \
+    --no-dev \
+    --optimize-autoloader \
+    --no-interaction \
+    --no-progress
+
+# build frontend assets (Wayfinder runs via php artisan during build)
+RUN npm ci --prefer-offline --no-audit && \
+    npm run build
+
+FROM dunglas/frankenphp:php8.5 AS runtime
+WORKDIR /app
+
+# install only runtime PHP extensions
 RUN install-php-extensions \
     pdo_mysql \
     gd \
@@ -15,41 +41,33 @@ RUN install-php-extensions \
     pcntl \
     redis
 
-# copy application code
-COPY . .
+# copy only runtime files and built artifacts
+COPY --from=build /app/app ./app
+COPY --from=build /app/bootstrap ./bootstrap
+COPY --from=build /app/config ./config
+COPY --from=build /app/database ./database
+COPY --from=build /app/public ./public
+COPY --from=build /app/resources/views ./resources/views
+COPY --from=build /app/routes ./routes
+COPY --from=build /app/storage ./storage
+COPY --from=build /app/vendor ./vendor
+COPY --from=build /app/scripts ./scripts
+COPY --from=build /app/artisan ./artisan
+COPY --from=build /app/composer.json ./composer.json
+COPY --from=build /app/composer.lock ./composer.lock
+COPY --from=build /app/public/build ./public/build
 
-# install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# install PHP dependencies (production)
-RUN composer install \
-    --no-dev \
-    --optimize-autoloader \
-    --no-interaction \
-    --no-progress
-
-# install node dependencies and build assets
-RUN npm ci --prefer-offline --no-audit && \
-    npm run build && \
-    rm -rf node_modules
-
-# set permissions for storage and cache directories
-RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache && \
+# set permissions
+RUN chown -R www-data:www-data /app && \
+    chmod -R 755 /app && \
     chmod -R 775 /app/storage /app/bootstrap/cache
 
-# set ownership of all app files to www-data
-RUN chown -R www-data:www-data /app && chmod -R 755 /app
-
-# copy startup script
-COPY scripts/octane-entrypoint.sh /app/scripts/octane-entrypoint.sh
+# startup script
 RUN chmod +x /app/scripts/octane-entrypoint.sh
 
-# expose port
 EXPOSE 8000
 
-# health check (wait for the application to be ready before starting health checks)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
     CMD curl -f http://localhost:8000 || exit 1
 
-# use the startup script
 ENTRYPOINT ["/app/scripts/octane-entrypoint.sh"]
