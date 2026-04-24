@@ -1,3 +1,9 @@
+## [1.3.0](https://github.com/masmuss/applyst/compare/v1.2.0...v1.3.0) (2026-04-24)
+
+### Features
+
+* add trustProxies middleware configuration for enhanced proxy handling ([7642255](https://github.com/masmuss/applyst/commit/7642255785585fcf36fbf77b97fc5f830e3f558f))
+
 ## [1.2.0](https://github.com/masmuss/applyst/compare/v1.1.0...v1.2.0) (2026-04-24)
 
 ### Features
