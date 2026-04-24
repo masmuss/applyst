@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/masmuss/applyst/compare/v1.0.1...v1.1.0) (2026-04-24)
+
+### Features
+
+* add QEMU setup step and specify platforms for Docker build ([1796090](https://github.com/masmuss/applyst/commit/1796090fc816a3d4af0a240c81b43e8e805d85aa))
+
 ## [1.0.1](https://github.com/masmuss/applyst/compare/v1.0.0...v1.0.1) (2026-04-24)
 
 ### Bug Fixes
