@@ -75,14 +75,6 @@ class JobApplicationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreJobApplicationRequest $request): RedirectResponse
@@ -103,7 +95,7 @@ class JobApplicationController extends Controller
         $this->authorize('view', $jobApplication);
 
         $jobApplication->load([
-            'statusLogs' => fn ($q) => $q->oldest('created_at'),
+            'statusLogs' => fn ($q) => $q->orderBy('created_at', 'desc'),
         ]);
 
         return Inertia::render('job-applications/show', [
