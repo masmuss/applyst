@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/masmuss/applyst/compare/v1.0.0...v1.0.1) (2026-04-24)
+
+### Bug Fixes
+
+* update semantic-release action and Docker actions to latest versions ([540ace1](https://github.com/masmuss/applyst/commit/540ace158792bd0cb56383742079dfa8a8ecf134))
+
 ## 1.0.0 (2026-04-24)
 
 ### Features
