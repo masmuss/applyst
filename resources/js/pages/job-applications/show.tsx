@@ -1,7 +1,11 @@
+import { Pencil } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Head } from '@inertiajs/react';
+import { Button } from '@/components/ui/button';
 import { JobApplicationShowHero } from '@/features/job-applications/components/job-application-show-hero';
 import { JobApplicationShowNotesPanel } from '@/features/job-applications/components/job-application-show-notes-panel';
 import { JobApplicationShowTimeline } from '@/features/job-applications/components/job-application-show-timeline';
+import { JobApplicationUpdateDialog } from '@/features/job-applications/components/job-application-update-dialog';
 import type {
     JobApplicationDetail,
     JobApplicationStatusLabels,
@@ -73,6 +77,25 @@ export default function JobApplicationsShow({
                             <JobApplicationShowTimeline
                                 statusLogs={statusLogs}
                                 processDurationLabel={processDuration}
+                                topAction={
+                                    <JobApplicationUpdateDialog
+                                        jobApplication={jobApplication}
+                                        statuses={statuses}
+                                        trigger={
+                                            <Button
+                                                size="sm"
+                                                variant="ghost"
+                                                className="w-full justify-center py-2 md:py-4"
+                                            >
+                                                <HugeiconsIcon
+                                                    icon={Pencil}
+                                                    data-icon="inline-start"
+                                                />
+                                                Update progress
+                                            </Button>
+                                        }
+                                    />
+                                }
                             />
                         </div>
                     </div>
