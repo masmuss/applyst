@@ -1,5 +1,6 @@
 import type { IconSvgElement } from '@hugeicons/react';
 import { HugeiconsIcon } from '@hugeicons/react';
+import type { ReactNode } from 'react';
 import { Badge } from '@/components/ui/badge';
 import {
     Card,
@@ -9,26 +10,68 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import {
-    JobApplicationStatusBadge,
-    getJobApplicationStatusMeta,
-} from '@/features/job-applications/components/job-application-status';
-import type { JobApplicationStatusLog } from '@/features/job-applications/types';
+import { getJobApplicationStatusMeta } from '@/features/job-applications/components/job-application-status';
+import type {
+    JobApplicationStatus,
+    JobApplicationStatusLog,
+} from '@/features/job-applications/types';
 import { formatDate } from '@/features/job-applications/utils';
 import { cn } from '@/lib/utils';
 
 type JobApplicationShowTimelineProps = {
     statusLogs: JobApplicationStatusLog[];
     processDurationLabel: string | null;
+    topAction?: ReactNode;
 };
 
 function TimelineIcon({ icon }: { icon: IconSvgElement }) {
     return <HugeiconsIcon icon={icon} className="size-4" />;
 }
 
+function getTimelineIconTone(status: JobApplicationStatus): string {
+    if (status === 'rejected') {
+        return 'border-destructive/45 bg-destructive/20 text-destructive';
+    }
+
+    if (status === 'accepted') {
+        return 'border-emerald-500/45 bg-emerald-500/20 text-emerald-600 dark:text-emerald-400';
+    }
+
+    if (status === 'offering') {
+        return 'border-sky-500/45 bg-sky-500/20 text-sky-600 dark:text-sky-400';
+    }
+
+    if (status === 'interview') {
+        return 'border-primary/45 bg-primary/20 text-primary';
+    }
+
+    return 'border-border/60 bg-muted/70 text-muted-foreground';
+}
+
+function getTimelineStatusTextTone(status: JobApplicationStatus): string {
+    if (status === 'rejected') {
+        return 'text-destructive';
+    }
+
+    if (status === 'accepted') {
+        return 'text-emerald-600 dark:text-emerald-400';
+    }
+
+    if (status === 'offering') {
+        return 'text-sky-600 dark:text-sky-400';
+    }
+
+    if (status === 'interview') {
+        return 'text-primary';
+    }
+
+    return 'text-foreground';
+}
+
 export function JobApplicationShowTimeline({
     statusLogs,
     processDurationLabel,
+    topAction,
 }: JobApplicationShowTimelineProps) {
     return (
         <Card>
@@ -47,6 +90,20 @@ export function JobApplicationShowTimeline({
 
             <CardContent>
                 <ol className="space-y-8">
+                    {topAction ? (
+                        <li className="relative pl-12">
+                            <span className="absolute top-0 left-0 z-10 flex size-9 items-center justify-center rounded-full border border-dashed border-border/70 bg-background text-muted-foreground">
+                                +
+                            </span>
+
+                            <div className="rounded-xl border border-dashed border-border/70 bg-muted/20 p-3">
+                                {topAction}
+                            </div>
+
+                            <span className="absolute top-10 left-4.5 h-[calc(100%+1.2rem)] w-px bg-border/70" />
+                        </li>
+                    ) : null}
+
                     {statusLogs.map((log, index) => {
                         const statusMeta = getJobApplicationStatusMeta(
                             log.to_status,
@@ -55,23 +112,36 @@ export function JobApplicationShowTimeline({
                         return (
                             <li key={log.id} className="relative pl-12">
                                 {index < statusLogs.length - 1 ? (
-                                    <span className="absolute top-10 left-[1.18rem] h-[calc(100%+1.2rem)] w-px bg-border/70" />
+                                    <span className="absolute top-0 left-4.5 h-[calc(100%+2rem)] w-px bg-border/70" />
                                 ) : null}
 
                                 <span
                                     className={cn(
-                                        'absolute top-0 left-0 flex size-9 items-center justify-center rounded-full border border-border/70 bg-background text-muted-foreground shadow-sm',
+                                        'absolute top-0 left-0 z-10 flex size-9 items-center justify-center rounded-full border border-border/70 bg-background shadow-sm',
                                     )}
                                 >
-                                    <TimelineIcon icon={statusMeta.icon} />
+                                    <span
+                                        className={cn(
+                                            'flex size-7 items-center justify-center rounded-full border',
+                                            getTimelineIconTone(log.to_status),
+                                        )}
+                                    >
+                                        <TimelineIcon icon={statusMeta.icon} />
+                                    </span>
                                 </span>
 
                                 <div className="space-y-3">
                                     <div className="flex flex-wrap items-center justify-between gap-2">
-                                        <JobApplicationStatusBadge
-                                            status={log.to_status}
-                                            label={log.to_label}
-                                        />
+                                        <p
+                                            className={cn(
+                                                'text-sm font-semibold tracking-tight',
+                                                getTimelineStatusTextTone(
+                                                    log.to_status,
+                                                ),
+                                            )}
+                                        >
+                                            {log.to_label}
+                                        </p>
                                         <span className="text-xs text-muted-foreground">
                                             {formatDate(
                                                 log.changed_at ??
