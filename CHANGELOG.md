@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/masmuss/applyst/compare/v1.3.0...v1.4.0) (2026-04-25)
+
+### Features
+
+* enhance job application timeline with top action for progress updates ([16b3d1c](https://github.com/masmuss/applyst/commit/16b3d1ceb8d2340df6c78177d132b5349bc1a56b))
+* implement SEO meta tags and structure for landing page ([dfd0396](https://github.com/masmuss/applyst/commit/dfd03960eee0967382424a36ba44826c656678c9))
+
 ## [1.3.0](https://github.com/masmuss/applyst/compare/v1.2.0...v1.3.0) (2026-04-24)
 
 ### Features
