@@ -20,4 +20,18 @@ class LandingPageTest extends TestCase
                 ->where('canRegister', Features::enabled(Features::registration()))
             );
     }
+
+    public function test_landing_page_contains_default_seo_meta_tags(): void
+    {
+        $canonicalUrl = rtrim(config('app.url'), '/');
+
+        $this->get(route('home'))
+            ->assertOk()
+            ->assertSee('name="description" content="Track job applications, monitor your job search effectiveness, and keep follow-ups organized in one clean dashboard."', false)
+            ->assertSee('property="og:type" content="website"', false)
+            ->assertSee('property="og:title" content="Track your job applications effectively - applyst"', false)
+            ->assertSee('property="og:image" content="'.$canonicalUrl.'/og.png?v=', false)
+            ->assertSee('name="twitter:card" content="summary_large_image"', false)
+            ->assertSee('rel="canonical" href="'.$canonicalUrl.'"', false);
+    }
 }
